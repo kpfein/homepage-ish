@@ -3,7 +3,24 @@
 <head>
 	<title>todo</title>
 </head>
-<body>
-	<p>hello world</p>
+<body ng-app="todo">
+
+
+
+<ui-view></ui-view>
+
+	<script src="https://code.angularjs.org/1.4.7/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+	<script src="app.js"></script>
+	<script src="controllers/loginCtrl.js"></script>
+	<script src="controllers/registerCtrl.js"></script>
+	<script src="controllers/dashboardCtrl.js"></script>
+	<script src="controllers/addCtrl.js"></script>
+	<script src="controllers/activeCtrl.js"></script>
+	<script src="controllers/completeCtrl.js"></script>
+	<script src="controllers/editCtrl.js"></script>
+	<script src="services/taskService.js"></script>
+
+
 </body>
 </html>
