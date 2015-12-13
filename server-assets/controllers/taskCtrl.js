@@ -4,14 +4,20 @@ var Task = require("../models/taskModel");
 module.exports = {
 
 	getActiveTasks: function(req, res){
-		Task.find({status: "active"}).sort({due_date: 1}).exec().then(function(results){
+		Task.find({status: "active"}).sort({due: 1}).exec().then(function(results){
 			res.status(200).send(results);
 		});
 	},
 
 	getCompletedTasks: function(req, res){
-		Task.find({status: "completed"}).sort({due_date: 1}).exec().then(function(results){
+		Task.find({status: "completed"}).sort().exec().then(function(results){
 			res.status(200).send(results);
+		});
+	},
+
+	getTask: function(req, res){
+		Task.findById(req.params.id).exec().then(function(results){
+			return res.status(200).json(results);
 		});
 	},
 
@@ -22,15 +28,15 @@ module.exports = {
 		});
 	},
 
-	updateTask: function(req, res){
+	editTask: function(req, res){
 		Task.update({_id: req.params.id}, req.body).then(function(err, results){
 			res.status(200).end();
 		});
 	},
 
 	updateTaskProgress: function(req, res){
-		Task.findById(req.params.id).then(function(task){
-			task.progress.push(req.body.progress.toString());
+		Task.findById(req.params.id).exec().then(function(task){
+		task.progress.push(req.body);
 			return task.save().then(function(results){
 				return res.json(results);
 			});
@@ -40,12 +46,40 @@ module.exports = {
 	},
 
 	archiveTask: function(req, res){
-		Task.findById(req.params.id).exec().then(function(doc){
-			doc.status = "completed";
-			return doc.save().then(function(results){
-				return res.json(results)
-			})
-		})
-	}
+		Task.update({_id: req.params.id}, req.body).then(function(err, res){
+			return res.status(201).end();
+		});
+	},
+
+	reactivateTask: function(req, res){
+		Task.update({_id: req.params.id}, req.body).then(function(err, res){
+			return res.status(201).end();
+		});
+	},
+
+	deleteTask: function(req, res){
+		Task.remove({_id: req.params.id}).then(function(result){
+			res.status(200).end();
+		});
+	},
+
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

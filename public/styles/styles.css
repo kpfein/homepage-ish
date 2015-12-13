@@ -1,0 +1,13 @@
+.nav {
+	padding-left: 15px;
+}
+
+.dashboard-section {
+	box-sizing: border-box;
+	border: 1px solid black;
+	padding: 0px 15px 15px 15px;
+}
+
+.on-point {
+	cursor: pointer;
+}

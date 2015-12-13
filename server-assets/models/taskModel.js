@@ -1,11 +1,16 @@
 var mongoose = require("mongoose");
 
-var Task = mongoose.model("Task", new mongoose.Schema({
+var Task = new mongoose.Schema({
 	title: {type: String, required: true},
 	details: {type: String},
-	due_date: {type: Date},
 	status: {type: String, enum: ["active", "completed"], default: "active"},
-	progress: []
-}));
+	due: {type: Date},
+	progress: [
+	{
+		message: {type: String},
+		updated: {type: Date, default: Date.now}
+	}],
+}, {timestamps: true});
 
-module.exports = Task;
+
+module.exports = mongoose.model("Task", Task);

@@ -1,0 +1,24 @@
+<div>
+	<div id="summary">{{w.hourly.summary}}</div>
+
+	<div class="well well-sm hour-contain">
+		<div class="hourly-text">TIME</div>
+		<div class="hourly-text">COND</div>
+		<div class="hourly-text">TEMP</div>
+		<div class="hourly-text">PRECIP</div>
+	</div>
+
+	<div class="well well-sm hour-contain" ng-repeat="w in w.hourly.data" ng-show="!toggleUnits">
+		<div class="hourly-text">{{convertDate(w.time) | date: "h a"}}</div>
+		<div><skycon icon="w.icon"></div>
+		<div class="hourly-text">{{round(w.temperature)}}°F</div>
+		<div class="hourly-text">{{percentage(w.precipProbability)}}%</div>
+	</div>
+
+	<div class="well well-sm hour-contain" ng-repeat="w in w.hourly.data" ng-show="toggleUnits">
+		<div class="hourly-text">{{convertDate(w.time) | date: "h a"}}</div>
+		<div><skycon icon="w.icon"></div>
+		<div class="hourly-text">{{celsius(w.temperature)}}°C</div>
+		<div class="hourly-text">{{percentage(w.precipProbability)}}%</div>
+	</div>
+</div>	

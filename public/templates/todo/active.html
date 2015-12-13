@@ -1,0 +1,21 @@
+<div ng-repeat="a in actives">
+	<h2>{{a.title}}</h2>
+	<p>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</p>
+	<p>Due Date: {{a.due | date: "EEEE, MMMM d"}}</p>
+	<p>{{a.details}}</p>
+	<button ui-sref="todo.edit({id: a._id})">Edit Task</button>
+	<button ng-click="updateProgress = !updateProgress" >Update Progress</button>
+	<button ng-click="completeTask(a._id)">Mark Completed</button>
+
+	<div ng-show="updateProgress">
+		<form>
+			Update: <input ng-model="thisTask.progress.message" placeholder="update on task progress">
+			<input type="submit" value="Submit" ng-click="updateTaskProgress(a._id, thisTask)">	
+		</form>
+	</div>
+	<div ng-repeat="p in a.progress">
+		<p>{{p.message}}</p>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
+		<hr>
+	</div>
+	<hr>
+</div>

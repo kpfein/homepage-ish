@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row nav">
+		<div class="col-md-5">
+			<div class="dashboard-section">
+				<h2 class="on-point" ui-sref="home.news.all">NEWS</h2>
+				<div ng-repeat="w in world|limitTo:2">
+					<a target="_blank" href="{{w.url}}">{{w.title}}</a>
+				</div>
+				<div ng-repeat="n in national|limitTo:2">
+					<a target="_blank" href="{{n.url}}">{{n.title}}</a>
+				</div>
+				<div ng-repeat="p in politics|limitTo:2">
+					<a target="_blank" href="{{p.url}}">{{p.title}}</a>
+				</div>
+			</div>
+			<br>
+			<div class="dashboard-section">
+				<h2 class="on-point" ui-sref="home.weather">WEATHER</h2>
+				<div class="current" id="current-temp">{{round(w.currently.temperature)}}°F</div>
+					<div class="current"><skycon icon="w.currently.icon"></skycon></div>
+					<div class="current current-text">{{w.currently.summary}}</div>
+					<div class="current current-text">Feels Like: {{round(w.currently.apparentTemperature)}}°F</div>
+					<div class="current current-text">Hi: {{round(w.daily.data[0].temperatureMax)}}°F | Lo: {{round(w.daily.data[0].temperatureMin)}}°F</div>
+					<div class="current current-text">Dew Point: {{round(w.currently.dewPoint)}}°</div>
+					<div class="current current-text">Humidity: {{percentage(w.currently.humidity)}}%</div>
+					<div class="current current-text">Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
+					<div class="current current-text">Wind: {{round(w.currently.windSpeed)}} mph | {{direction(w.currently.windBearing)}}</div>
+					<div class="current current-text">Visibility: {{w.currently.visibility}} mi</div>
+					<div class="current current-text">Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
+			</div>
+		</div>
+		<div class="dashboard-section col-md-offset-1 col-md-5">
+				<h2 class="on-point" ui-sref="home.sports">SPORTS</h2>
+				<div ng-repeat="s in sports|limitTo:5">
+					<a target="_blank" href="{{s.url}}">{{s.title}}</a>
+			</div>
+		</div>
+	</div>
+</div>

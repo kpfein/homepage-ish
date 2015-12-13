@@ -1,0 +1,1 @@
+newsCtrl.js

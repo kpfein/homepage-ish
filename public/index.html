@@ -1,9 +1,14 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>todo</title>
+	<title>Homepage.ish</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+
 </head>
-<body ng-app="todo">
+<body ng-app="homepage">
+<routes></routes>
+<br>
 
 
 
@@ -11,15 +16,63 @@
 
 	<script src="https://code.angularjs.org/1.4.7/angular.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+	<script src="bootstrap/ui-bootstrap.js"></script>
+
+	<!-- bower components -->
+	<script src="/bower_components/skycons/skycons.js"></script>
+	<script src="/bower_components/angular-skycons/angular-skycons.js"></script>
+
 	<script src="app.js"></script>
-	<script src="controllers/loginCtrl.js"></script>
-	<script src="controllers/registerCtrl.js"></script>
-	<script src="controllers/dashboardCtrl.js"></script>
-	<script src="controllers/addCtrl.js"></script>
-	<script src="controllers/activeCtrl.js"></script>
-	<script src="controllers/completeCtrl.js"></script>
-	<script src="controllers/editCtrl.js"></script>
-	<script src="services/taskService.js"></script>
+
+	<!-- login controllers -->
+
+	<script src="controllers/login/loginCtrl.js"></script>
+	<script src="controllers/login/registerCtrl.js"></script>
+
+	<!-- home controllers -->
+
+	<script src="controllers/home/homeCtrl.js"></script>
+
+	<!-- to do controllers -->
+
+	<script src="controllers/todo/todoHomeCtrl.js"></script>
+	<script src="controllers/todo/addCtrl.js"></script>
+	<script src="controllers/todo/activeCtrl.js"></script>
+	<script src="controllers/todo/completeCtrl.js"></script>
+	<script src="controllers/todo/editCtrl.js"></script>
+
+	<!-- sports controllers -->
+
+	<script src="controllers/sports/sportsHomeCtrl.js"></script>
+
+
+	<!-- weather controllers -->
+
+	<script src="controllers/weather/weatherHomeCtrl.js"></script>
+
+
+	<!-- news controllers -->
+	
+	<script src="controllers/news/newsHomeCtrl.js"></script>
+
+
+	<!-- services -->
+	<script src="services/todoService.js"></script>
+	<script src="services/sportsService.js"></script>
+	<script src="services/newsService.js"></script>
+	<script src="services/weatherService.js"></script>
+	<script src="http://maps.google.com/maps/api/js"></script>
+
+	<!-- directives -->
+	<script src="directives/routes.js"></script>
+	<script src="directives/newsRoutes.js"></script>
+	<script src="directives/weatherRoutes.js"></script>
+
+
+
+
+
+
 
 
 </body>

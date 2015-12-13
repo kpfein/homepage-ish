@@ -1,0 +1,40 @@
+<div class="seven-day-container">
+		<div class="seven-day-contain">
+			<div class="well well-sm" ng-show="!toggleUnits" ng-repeat="w in w.daily.data" ng-click="isCollapsed = !isCollapsed">
+				<div class="day-date">{{convertDate(w.time) | date: "EEEE"}}</div>
+				<hr>
+				<div class="current"><skycon icon="w.icon"></skycon></div>
+				<hr>
+				<div class="day-hi-lo">Hi: {{round(w.temperatureMax)}}°F | Lo: {{round(w.temperatureMin)}}°F</div>
+				<div class="day-precip">Precip: {{percentage(w.precipProbability)}}%</div>
+
+					<div uib-collapse="!isCollapsed">
+						<hr>
+						<div class="day-summary">{{w.summary}}</div>
+						<div class="day-text">Wind: {{round(w.windSpeed)}} mph | {{direction(w.windBearing)}}</div>
+						<div class="day-text">Humidity: {{percentage(w.humidity)}}%</div>
+						<div class="day-text">Dew Point: {{round(w.dewPoint)}}°</div>
+						<div class="day-text">Sunrise: {{convertDate(w.sunriseTime) | date: "shortTime"}}</div>
+						<div class="day-text">Sunset: {{convertDate(w.sunsetTime) | date: "shortTime"}}</div>
+					</div>
+			</div>
+
+			<div class="well well-sm" ng-show="toggleUnits" ng-repeat="w in w.daily.data" ng-click="isCollapsed = !isCollapsed">
+				<div class="day-date">{{convertDate(w.time) | date: "EEEE"}}</div>
+				<hr>
+				<div class="current"><skycon icon="w.icon"></skycon></div>
+				<hr>
+				<div class="day-hi-lo">Hi: {{celsius(w.temperatureMax)}}°C | Lo: {{celsius(w.temperatureMin)}}°C</div>
+				<div class="day-precip">Precip: {{percentage(w.precipProbability)}}%</div>
+
+					<div uib-collapse="!isCollapsed">
+						<div class="day-summary">{{w.summary}}</div>
+						<div class="day-text">Wind: {{kph(w.windSpeed)}} kph | {{direction(w.windBearing)}}</div>
+						<div class="day-text">Humidity: {{percentage(w.humidity)}}%</div>
+						<div class="day-text">Dew Point: {{round(w.dewPoint)}}°</div>
+						<div class="day-text">Sunrise: {{convertDate(w.sunriseTime) | date: "shortTime"}}</div>
+						<div class="day-text">Sunset: {{convertDate(w.sunsetTime) | date: "shortTime"}}</div>
+					</div>
+			</div>
+		</div>
+	</div>

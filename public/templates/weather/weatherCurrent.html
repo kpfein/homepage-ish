@@ -1,0 +1,27 @@
+<div class="well well-sm" ng-show="!toggleUnits">
+		<div class="current" id="current-temp">{{round(w.currently.temperature)}}°F</div>
+		<div class="current"><skycon icon="w.currently.icon"></skycon></div>
+		<div class="current current-text">{{w.currently.summary}}</div>
+		<div class="current current-text">Feels Like: {{round(w.currently.apparentTemperature)}}°F</div>
+		<div class="current current-text">Hi: {{round(w.daily.data[0].temperatureMax)}}°F | Lo: {{round(w.daily.data[0].temperatureMin)}}°F</div>
+		<div class="current current-text">Dew Point: {{round(w.currently.dewPoint)}}°</div>
+		<div class="current current-text">Humidity: {{percentage(w.currently.humidity)}}%</div>
+		<div class="current current-text">Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
+		<div class="current current-text">Wind: {{round(w.currently.windSpeed)}} mph | {{direction(w.currently.windBearing)}}</div>
+		<div class="current current-text">Visibility: {{w.currently.visibility}} mi</div>
+		<div class="current current-text">Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
+	</div>
+
+	<div class="well well-sm" ng-show="toggleUnits">
+		<div class="current" id="current-temp">{{celsius(w.currently.temperature)}}°C</div>
+		<div class="current"><skycon icon="w.currently.icon"></skycon></div>
+		<div class="current current-text">{{w.currently.summary}}</div>
+		<div class="current current-text">Feels Like: {{celsius(w.currently.apparentTemperature)}}°C</div>
+		<div class="current current-text">Hi: {{celsius(w.daily.data[0].temperatureMax)}}°C | Lo: {{celsius(w.daily.data[0].temperatureMin)}}°C</div>
+		<div class="current current-text">Dew Point: {{celsius(w.currently.dewPoint)}}°</div>
+		<div class="current current-text">Humidity: {{percentage(w.currently.humidity)}}%</div>
+		<div class="current current-text">Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
+		<div class="current current-text">Wind: {{kph(w.currently.windSpeed)}} kph | {{direction(w.currently.windBearing)}}</div>
+		<div class="current current-text">Visibility: {{kilo(w.currently.visibility)}} km</div>
+		<div class="current current-text">Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
+	</div>
