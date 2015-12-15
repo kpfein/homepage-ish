@@ -1,0 +1,27 @@
+<button class="btn btn-lg btn-primary" >ADD FACEBOOK</button>
+<button class="btn btn-lg btn-primary" >ADD TWITTER</button>
+<button class="btn btn-lg btn-primary" >ADD INSTAGRAM</button>
+<button class="btn btn-lg btn-primary" >ADD TUMBLR</button>
+<button class="btn btn-lg btn-primary" >ADD REDDIT</button>
+<button class="btn btn-lg btn-primary" ui-sref="home.dashboard">NOT NOW, CONTINUE TO HOMEPAGE</button>
+<button class="btn btn-lg btn-primary" ui-sref="logout">LOGOUT</button>
+<div ng-show="currentUser.facebook.username">
+	<h2>FACEBOOK</h2>
+	<p>{{currentUser.facebook.username}}</p>
+</div>
+<div ng-show="currentUser.twitter.username">
+	<h2>TWITTER</h2>
+	<p>{{currentUser.twitter.username}}</p>
+</div>
+<div ng-show="currentUser.instagram.username">
+	<h2>INSTAGRAM</h2>
+	<p>{{currentUser.instagram.username}}</p>
+</div>
+<div ng-show="currentUser.tumblr.username">
+	<h2>TUMBLR</h2>
+	<p>{{currentUser.tumblr.username}}</p>
+</div>
+<div ng-show="currentUser.tumblr.username">
+	<h2>REDDIT</h2>
+	<p>{{currentUser.reddit.username}}</p>
+</div>

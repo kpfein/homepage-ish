@@ -3,9 +3,9 @@
 	<p>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</p>
 	<p>Due Date: {{a.due | date: "EEEE, MMMM d"}}</p>
 	<p>{{a.details}}</p>
-	<button ui-sref="todo.edit({id: a._id})">Edit Task</button>
-	<button ng-click="updateProgress = !updateProgress" >Update Progress</button>
-	<button ng-click="completeTask(a._id)">Mark Completed</button>
+	<button class="btn btn-primary btn-sm" ui-sref="home.todo.edit({id: a._id})">Edit Task</button>
+	<button class="btn btn-primary btn-sm" ng-click="updateProgress = !updateProgress" >Update Progress</button>
+	<button class="btn btn-primary btn-sm" ng-click="completeTask(a._id)">Mark Completed</button>
 
 	<div ng-show="updateProgress">
 		<form>

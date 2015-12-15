@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Task = require("../models/taskModel");
+var User = require("../models/userModel");
 
 module.exports = {
 
@@ -58,7 +59,7 @@ module.exports = {
 	},
 
 	deleteTask: function(req, res){
-		Task.remove({_id: req.params.id}).then(function(result){
+		Task.update({_id: req.params.id}).then(function(result){
 			res.status(200).end();
 		});
 	},

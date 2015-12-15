@@ -1,20 +1,42 @@
-angular.module("homepage", ["ui.router", "ui.bootstrap", "angular-skycons"]).config(function($stateProvider, $urlRouterProvider){
+angular.module("homepage", ["ui.router", "ui.bootstrap", "angular-skycons"]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
-	$urlRouterProvider.otherwise("/home/dashboard");
+	$urlRouterProvider.otherwise("/login");
 
 	$stateProvider
 ///////////////////////// LOGIN STATES //////////////////////////////////////////////////////////
 
+		.state("login", {
+			url: "/login", 
+			templateUrl: "templates/login/loginHome.html",
+		})
 		// .state("login", {
 		// 	url: "/login", 
-		// 	controller: "loginCtrl",
-		// 	templateUrl: "templates/login.html",
+		// 	controller: "userCtrl",
+		// 	templateUrl: "templates/login/login.html",
 		// })
 		// .state("register", {
 		// 	url: "/register", 
-		// 	controller: "registerCtrl",
-		// 	templateUrl: "templates/register.html",
+		// 	controller: "userCtrl",
+		// 	templateUrl: "templates/login/register.html",
 		// })
+		.state("settings", {
+			url: "/settings", 
+			controller: "userCtrl",
+			templateUrl: "templates/login/settings.html",
+			resolve: {
+				currentUser: function(userService) {
+					return userService.getCurrentUser();
+				}
+			}
+		})
+		.state("logout", {
+			url: "/logout", 
+			controller: function(userService, $state){
+				userService.logout().then(function(){
+					$state.go("login")
+				})
+			}
+		})
 
 ///////////////////////// HOME STATE //////////////////////////////////////////////////////////
 
@@ -59,6 +81,9 @@ angular.module("homepage", ["ui.router", "ui.bootstrap", "angular-skycons"]).con
 				Weather: function($stateParams, weatherService){
 					return weatherService.getCurrentLocationWeather();
 				},
+				currentUser: function(userService) {
+					return userService.getCurrentUser();
+				},
 			}
 		})
 		.state("home.dashboard", {
@@ -70,27 +95,27 @@ angular.module("homepage", ["ui.router", "ui.bootstrap", "angular-skycons"]).con
 
 ///////////////////////// TODO STATES //////////////////////////////////////////////////////////
 
-		.state("todo", {
+		.state("home.todo", {
 			url: "/todo",
 			controller: "todoHomeCtrl",
 			templateUrl: "templates/todo/todoHome.html",
 		})
-		.state("todo.active", {
+		.state("home.todo.active", {
 			url: "/active",
 			controller: "activeCtrl",
 			templateUrl: "templates/todo/active.html",
 		})
-		.state("todo.add", {
+		.state("home.todo.add", {
 			url: "/add",
 			controller: "addCtrl",
 			templateUrl: "templates/todo/add.html",
 		})
-		.state("todo.edit", {
+		.state("home.todo.edit", {
 			url: "/edit/:id",
 			controller: "editCtrl",
 			templateUrl: "templates/todo/edit.html",
 		})
-		.state("todo.complete", {
+		.state("home.todo.complete", {
 			url: "/completed",
 			controller: "completeCtrl",
 			templateUrl: "templates/todo/complete.html",
@@ -191,7 +216,17 @@ angular.module("homepage", ["ui.router", "ui.bootstrap", "angular-skycons"]).con
 
 
 
-
+	$httpProvider.interceptors.push(function($q) {
+    	return {
+      		responseError: function(res) {
+	        	if (res.status === 401) {
+	        		document.location = '/#/login';
+	        	//$state.go('login');
+	        	}
+        		return $q.reject();
+      		}
+      	}
+  	});
 
 
 

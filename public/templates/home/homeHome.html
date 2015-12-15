@@ -15,25 +15,54 @@
 			</div>
 			<br>
 			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.weather">WEATHER</h2>
-				<div class="current" id="current-temp">{{round(w.currently.temperature)}}°F</div>
-					<div class="current"><skycon icon="w.currently.icon"></skycon></div>
-					<div class="current current-text">{{w.currently.summary}}</div>
-					<div class="current current-text">Feels Like: {{round(w.currently.apparentTemperature)}}°F</div>
-					<div class="current current-text">Hi: {{round(w.daily.data[0].temperatureMax)}}°F | Lo: {{round(w.daily.data[0].temperatureMin)}}°F</div>
-					<div class="current current-text">Dew Point: {{round(w.currently.dewPoint)}}°</div>
-					<div class="current current-text">Humidity: {{percentage(w.currently.humidity)}}%</div>
-					<div class="current current-text">Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
-					<div class="current current-text">Wind: {{round(w.currently.windSpeed)}} mph | {{direction(w.currently.windBearing)}}</div>
-					<div class="current current-text">Visibility: {{w.currently.visibility}} mi</div>
-					<div class="current current-text">Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
-			</div>
-		</div>
-		<div class="dashboard-section col-md-offset-1 col-md-5">
 				<h2 class="on-point" ui-sref="home.sports">SPORTS</h2>
 				<div ng-repeat="s in sports|limitTo:5">
 					<a target="_blank" href="{{s.url}}">{{s.title}}</a>
+				</div>
 			</div>
+			
+		</div>
+		<div class="col-md-offset-1 col-md-5">
+			<div class="dashboard-section">
+				<h2 class="on-point" ui-sref="home.weather.current">WEATHER</h2><button ng-show="w.alerts" class="btn btn-danger btn-sm" ng-click="showAlert = !showAlert" >!</button>
+				<div class="current" id="current-temp">{{round(w.currently.temperature)}}°F</div>
+				<div class="current"><skycon icon="w.currently.icon"></skycon></div>
+				<div class="current current-text">{{w.currently.summary}}</div>
+				<div class="current current-text">Feels Like: {{round(w.currently.apparentTemperature)}}°F</div>
+				<div class="current current-text">Hi: {{round(w.daily.data[0].temperatureMax)}}°F | Lo: {{round(w.daily.data[0].temperatureMin)}}°F</div>
+				<div class="current current-text">Dew Point: {{round(w.currently.dewPoint)}}°</div>
+				<div class="current current-text">Humidity: {{percentage(w.currently.humidity)}}%</div>
+				<div class="current current-text">Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
+				<div class="current current-text">Wind: {{round(w.currently.windSpeed)}} mph | {{direction(w.currently.windBearing)}}</div>
+				<div class="current current-text">Visibility: {{w.currently.visibility}} mi</div>
+				<div class="current current-text">Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
+			</div>
+			<br>
+			<div class="dashboard-section">
+				<h2 class="on-point" ui-sref="home.todo.active">TO-DO LIST</h2>
+				<div ng-repeat="a in actives">
+					<h2>{{a.title}}</h2>
+					<p>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</p>
+					<p>Due Date: {{a.due | date: "EEEE, MMMM d"}}</p>
+					<p>{{a.details}}</p>
+					<button class="btn btn-primary btn-sm" ui-sref="home.todo.edit({id: a._id})">Edit Task</button>
+					<button class="btn btn-primary btn-sm" ng-click="updateProgress = !updateProgress" >Update Progress</button>
+					<button class="btn btn-primary btn-sm" ng-click="completeTask(a._id)">Mark Completed</button>
+
+					<div ng-show="updateProgress">
+						<form>
+							Update: <input ng-model="thisTask.progress.message" placeholder="update on task progress">
+							<input type="submit" value="Submit" ng-click="updateTaskProgress(a._id, thisTask)">	
+						</form>
+					</div>
+					<div ng-repeat="p in a.progress">
+						<p>{{p.message}}</p>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
+						<hr>
+					</div>
+					<hr>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>

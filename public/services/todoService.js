@@ -46,6 +46,8 @@ angular.module("homepage").service("todoService", function($q, $http){
 		});
 	};
 
+
+
 	this.editTask = function(id, thisTask){
 		return $http({
 			method: "PUT",
@@ -87,10 +89,14 @@ angular.module("homepage").service("todoService", function($q, $http){
 
 	this.deleteTask = function(id){
 		return $http({
-			method: "DELETE",
+			method: "PUT",
 			url: "/api/tasks/" + id,
+			data: {
+				status: "deleted"
+			}
 		});
 	};
+
 
 });
 

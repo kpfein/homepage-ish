@@ -1,29 +1,31 @@
-angular.module("homepage").controller("homeCtrl", function($scope, $stateParams, newsService, sportsService, weatherService, World, National, Politics, Business, Technology, Opinion, Health, Arts, Fashion, Travel, Sports, Weather){
+angular.module("homepage").controller("homeCtrl", function($scope, $stateParams, newsService, sportsService, weatherService, todoService, World, National, Politics, Business, Technology, Opinion, Health, Arts, Fashion, Travel, Sports, Weather, currentUser){
 
-	$scope.world = World;
-	$scope.national = National;
-	$scope.politics = Politics;
-	$scope.business = Business;
-	$scope.technology = Technology;
-	$scope.opinion = Opinion;
-	$scope.health = Health;
-	$scope.arts = Arts;
-	$scope.fashion = Fashion;
-	$scope.travel = Travel;
-	$scope.sports = Sports;
-	$scope.w = Weather;
-	$scope.nav = "HOME";
+	var s = $scope;
+	s.world = World;
+	s.national = National;
+	s.politics = Politics;
+	s.business = Business;
+	s.technology = Technology;
+	s.opinion = Opinion;
+	s.health = Health;
+	s.arts = Arts;
+	s.fashion = Fashion;
+	s.travel = Travel;
+	s.sports = Sports;
+	s.w = Weather;
+	s.currentUser = currentUser;
+	console.log("currentUser", currentUser);
 
 
 /////// WEATHER DATA CONVERSION FUNCTIONS /////////////////////////////////
-	$scope.temp = function(temp){return Math.round(temp);}
-	$scope.convertDate = function(dt){return new Date(dt * 1000);}
-	$scope.round = function(x){return Math.round(x);}
-	$scope.celsius = function(a){return Math.round((a - 32) * (5/9));}
-	$scope.percentage = function(x){return Math.round(x * 100);}
-	$scope.kilo = function(z){return (z * 1.69034).toFixed(2);}
-	$scope.kph = function(f){return Math.round(f * 1.69034);}
-	$scope.direction = function(y){
+	s.temp = function(temp){return Math.round(temp);}
+	s.convertDate = function(dt){return new Date(dt * 1000);}
+	s.round = function(x){return Math.round(x);}
+	s.celsius = function(a){return Math.round((a - 32) * (5/9));}
+	s.percentage = function(x){return Math.round(x * 100);}
+	s.kilo = function(z){return (z * 1.69034).toFixed(2);}
+	s.kph = function(f){return Math.round(f * 1.69034);}
+	s.direction = function(y){
 		var x;
 		if(((y >= 348.75) && (y < 360)) || ((y <= 11.24) && (y > 0))){ 
 			x = "N";
@@ -59,6 +61,30 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 			x = "NNW";
 		}
 		return x;
+	};
+
+
+/////// TO-DO LIST /////////////////////////////////
+
+	s.getActiveTasks = function(){
+		todoService.getActiveTasks().then(function(results){
+			s.actives = results;
+		});
+	};
+	s.getActiveTasks();
+
+	s.completeTask = function(id){
+		todoService.archiveTask(id).then(function(){
+			console.log("task archived");
+			s.getActiveTasks();
+		});
+	};
+
+	s.updateTaskProgress = function(id, thisTask){
+		todoService.updateTaskProgress(id, thisTask.progress.message).then(function(){
+			s.getActiveTasks();
+			console.log("progress updated");
+		});
 	};
 
 
