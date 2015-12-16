@@ -40,7 +40,7 @@
 			<br>
 			<div class="dashboard-section">
 				<h2 class="on-point" ui-sref="home.todo.active">TO-DO LIST</h2>
-				<div ng-repeat="a in actives">
+				<div class="dashboard-section" ng-repeat="a in actives">
 					<h2>{{a.title}}</h2>
 					<p>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</p>
 					<p>Due Date: {{a.due | date: "EEEE, MMMM d"}}</p>
@@ -50,19 +50,19 @@
 					<button class="btn btn-primary btn-sm" ng-click="completeTask(a._id)">Mark Completed</button>
 
 					<div ng-show="updateProgress">
+						<br>
 						<form>
 							Update: <input ng-model="thisTask.progress.message" placeholder="update on task progress">
 							<input type="submit" value="Submit" ng-click="updateTaskProgress(a._id, thisTask)">	
 						</form>
 					</div>
 					<div ng-repeat="p in a.progress">
-						<p>{{p.message}}</p>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
 						<hr>
+						<p>{{p.message}}</p>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
 					</div>
-					<hr>
+					<br>
 				</div>
 			</div>
-
 		</div>
 	</div>
 </div>

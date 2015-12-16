@@ -1,12 +1,13 @@
-angular.module("homepage").controller("completeCtrl", function($scope, todoService){
+angular.module("homepage").controller("completeCtrl", function($scope, todoService, currentUser){
+	$scope.currentUser = currentUser;
 
-	$scope.getCompletedTasks = function(){
-		todoService.getCompletedTasks().then(function(results){
+	$scope.getCompletedTasks = function(currentUser){
+		todoService.getCompletedTasks($scope.currentUser).then(function(results){
 			$scope.completeds = results;
 		});
 	};
 
-	$scope.getCompletedTasks();
+	$scope.getCompletedTasks($scope.currentUser);
 
 	$scope.reactivateTask = function(id){
 		todoService.reactivateTask(id).then(function(){

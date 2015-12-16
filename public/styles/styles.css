@@ -18,3 +18,6 @@
 .on-point {
 	cursor: pointer;
 }
+.dropdown:hover .dropdown-menu {
+display: block;
+}

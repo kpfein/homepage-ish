@@ -1,11 +1,11 @@
 <div class="nav-container">
 	<div class="row nav col-md-10">
-		<div class="btn-block">
-			<button class="btn btn-lg btn-primary" ng-model="nav" uib-btn-radio="'HOME'" ui-sref="home.dashboard">HOME</button>
+		<div class="btn-group">
+			<button class="btn btn-lg btn-primary" ui-sref="home.dashboard">HOME</button>
 
-			<div class="btn-group" uib-dropdown>
-				<button class="btn btn-lg btn-primary" uib-dropdown-toggle>WEATHER <span class="caret"></span></button>
-					<ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+			<div class="dropdown btn-group">
+				<button class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">WEATHER <span class="caret"></span></button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
 						<li role="menuitem"><a ui-sref="home.weather.current">CURRENT</a></li>
 						<li role="menuitem"><a ui-sref="home.weather.seven">7 DAY FORECAST</a></li>
 						<li role="menuitem"><a ui-sref="home.weather.hourly">HOURLY FORECAST</a></li>
@@ -13,9 +13,9 @@
 					</ul>
 			</div>
 
-			<div class="btn-group" uib-dropdown>
-			    <button class="btn btn-lg btn-primary" uib-dropdown-toggle>NEWS <span class="caret"></span></button>
-			    	<ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+			<div class="dropdown btn-group">
+			    <button class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">NEWS <span class="caret"></span></button>
+			    	<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
 				        <li role="menuitem"><a ui-sref="home.news.all">ALL</a></li>
 				        <li role="menuitem"><a ui-sref="home.news.world">WORLD</a></li>
 				        <li role="menuitem"><a ui-sref="home.news.national">NATIONAL</a></li>
@@ -29,17 +29,19 @@
 				        <li role="menuitem"><a ui-sref="home.news.travel">TRAVEL</a></li>
 			      	</ul>
 			</div>
-			<div class="btn-group" uib-dropdown>
-				<button class="btn btn-lg btn-primary" uib-dropdown-toggle>TO-DO LIST <span class="caret"></span></button>
-			   		<ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+			<div class="dropdown btn-group">
+				<button class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">TO-DO LIST <span class="caret"></span></button>
+			   		<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
 				        <li role="menuitem"><a ui-sref="home.todo.active">ACTIVE</a></li>
 				        <li role="menuitem"><a ui-sref="home.todo.complete">COMPLETED</a></li>
 				        <li role="menuitem"><a ui-sref="home.todo.add">ADD TASK</a></li>
 				    </ul>
 			</div>
 
-			<button class="btn btn-lg btn-primary" ng-model="nav" uib-btn-radio="'SPORTS'" ui-sref="home.sports">SPORTS</button>
-			<button class="btn btn-lg btn-primary" ng-model="nav" uib-btn-radio="'SETTINGS'" ui-sref="settings">SETTINGS</button>
+			<button class="btn btn-lg btn-primary" ui-sref="home.sports">SPORTS</button>
+			<button class="btn btn-lg btn-primary" ui-sref="profile">PROFILE</button>
+			<button class="btn btn-lg btn-primary" ui-sref="logout">LOGOUT</button>
+
 		</div>
 	</div>
 </div>

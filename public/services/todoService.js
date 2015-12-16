@@ -1,23 +1,23 @@
 angular.module("homepage").service("todoService", function($q, $http){
 
-	this.getActiveTasks = function(){
+	this.getActiveTasks = function(currentUser){
 		var deferred = $q.defer();
 		$http({
 			method: "GET",
-			url: "/api/tasks/active",
+			url: "/api/tasks/active/" + currentUser._id,
 		}).then(function(result){
 			activeTasks = result.data;
-			// console.log(activeTasks)
+			console.log(activeTasks)
 			deferred.resolve(activeTasks);
 		});
 		return deferred.promise;
 	};
 
-	this.getCompletedTasks = function(){
+	this.getCompletedTasks = function(currentUser){
 		var deferred = $q.defer();
 		$http({
 			method: "GET",
-			url: "/api/tasks/completed",
+			url: "/api/tasks/completed/" + currentUser._id,
 		}).then(function(result){
 			completedTasks = result.data;
 			deferred.resolve(completedTasks);
@@ -38,22 +38,41 @@ angular.module("homepage").service("todoService", function($q, $http){
 		return deferred.promise;
 	};
 
-	this.addTask = function(newTask){
-		return $http({
+	this.addTask = function(newTask, currentUser){
+		var deferred = $q.defer();
+		$http({
 			method: "POST",
 			url: "/api/tasks",
-			data: newTask
+			data: {
+				user: currentUser._id,
+				title: newTask.title,
+				details: newTask.details,
+				due: newTask.due
+			}
+		}).then(function(){
+			$http({
+				method: "PUT",
+				url: "/api/tasks/"+ currentUser._id,
+				data: newTask
+			}).then(function(){
+				// console.log("made it here")
+				deferred.resolve();
+			});
 		});
+		return	deferred.promise;
 	};
 
-
-
 	this.editTask = function(id, thisTask){
-		return $http({
+		console.log(thisTask)
+		var deferred = $q.defer();
+		$http({
 			method: "PUT",
-			url: "/api/tasks/" + id,
+			url: "/api/task/edit/" + id,
 			data: thisTask
+		}).then(function(){
+			deferred.resolve();
 		});
+		return deferred.promise;
 	};
 
 	this.updateTaskProgress = function(id, message){
@@ -68,33 +87,45 @@ angular.module("homepage").service("todoService", function($q, $http){
 	}
 
 	this.archiveTask = function(id){
-		return $http({
+		var deferred = $q.defer();
+		$http({
 			method: "PUT",
-			url: "/api/tasks/" + id,
+			url: "/api/task/archive/" + id,
 			data: {
-				status: "completed"
-			}
+				status: "completed",
+			},
+		}).then(function(){
+			deferred.resolve();
 		});
+		return deferred.promise;
 	};
 
 	this.reactivateTask = function(id){
-		return $http({
+		var deferred = $q.defer();
+		$http({
 			method: "PUT",
-			url: "/api/tasks/" + id,
+			url: "/api/task/reactivate/" + id,
 			data: {
-				status: "active"
-			}
+				status: "active",
+			},
+		}).then(function(){
+			deferred.resolve();
 		});
+		return deferred.promise;
 	};
 
 	this.deleteTask = function(id){
-		return $http({
+		var deferred = $q.defer();
+		$http({
 			method: "PUT",
-			url: "/api/tasks/" + id,
+			url: "/api/task/delete/" + id,
 			data: {
-				status: "deleted"
-			}
+				status: "deleted",
+			},
+		}).then(function(){
+			deferred.resolve();
 		});
+		return deferred.promise;
 	};
 
 

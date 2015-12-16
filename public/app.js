@@ -1,4 +1,4 @@
-angular.module("homepage", ["ui.router", "ui.bootstrap", "angular-skycons"]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
+angular.module("homepage", ["ui.router", "angular-skycons"]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
 	$urlRouterProvider.otherwise("/login");
 
@@ -19,10 +19,10 @@ angular.module("homepage", ["ui.router", "ui.bootstrap", "angular-skycons"]).con
 		// 	controller: "userCtrl",
 		// 	templateUrl: "templates/login/register.html",
 		// })
-		.state("settings", {
-			url: "/settings", 
+		.state("profile", {
+			url: "/profile", 
 			controller: "userCtrl",
-			templateUrl: "templates/login/settings.html",
+			templateUrl: "templates/login/profile.html",
 			resolve: {
 				currentUser: function(userService) {
 					return userService.getCurrentUser();
@@ -104,21 +104,41 @@ angular.module("homepage", ["ui.router", "ui.bootstrap", "angular-skycons"]).con
 			url: "/active",
 			controller: "activeCtrl",
 			templateUrl: "templates/todo/active.html",
+			resolve: {
+				currentUser: function(userService) {
+					return userService.getCurrentUser();
+				}
+			}
 		})
 		.state("home.todo.add", {
 			url: "/add",
 			controller: "addCtrl",
 			templateUrl: "templates/todo/add.html",
+			resolve: {
+				currentUser: function(userService) {
+					return userService.getCurrentUser();
+				}
+			}
 		})
 		.state("home.todo.edit", {
 			url: "/edit/:id",
 			controller: "editCtrl",
 			templateUrl: "templates/todo/edit.html",
+			resolve: {
+				currentUser: function(userService) {
+					return userService.getCurrentUser();
+				}
+			}
 		})
 		.state("home.todo.complete", {
 			url: "/completed",
 			controller: "completeCtrl",
 			templateUrl: "templates/todo/complete.html",
+			resolve: {
+				currentUser: function(userService) {
+					return userService.getCurrentUser();
+				}
+			}
 		})
 
 ///////////////////////// NEWS STATES //////////////////////////////////////////////////////////

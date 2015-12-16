@@ -27,11 +27,9 @@ var userSchema = new mongoose.Schema({
 
 	},
 
-	todolist: {
-		tasks: [{
-			task: {type: mongoose.Schema.Types.ObjectId, ref: "Task"}
-		}]
-	},
+	todolist: [{
+			task: {type: String, ref: "Task"}
+	}],
 
 });
 

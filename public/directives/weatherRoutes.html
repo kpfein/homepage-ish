@@ -1,9 +1,9 @@
 <div class="container">
 	<div class="row nav">
-		<button class="btn btn-primary btn-sm" ng-model="weather" uib-btn-radio="'current'" ui-sref="home.weather.current">CURRENT</button>
-		<button class="btn btn-primary btn-sm" ng-model="weather" uib-btn-radio="'seven'" ui-sref="home.weather.seven">7 DAY FORECAST</button>
-		<button class="btn btn-primary btn-sm" ng-model="weather" uib-btn-radio="'hourly'" ui-sref="home.weather.hourly">HOURLY FORECAST</button>
-		<button class="btn btn-primary btn-sm" ng-model="weather" uib-btn-radio="'lookup'" ui-sref="home.weather.lookup">SEARCH DIFFERENT LOCATION</button>
-		<button ng-show="w.alerts" class="btn btn-danger btn-sm" ng-click="showAlert = !showAlert" >LOCAL WEATHER ALERT</button>
+		<button type="button" class="btn btn-primary btn-sm active" ui-sref="home.weather.current">CURRENT</button>
+		<button type="button" class="btn btn-primary btn-sm active" ui-sref="home.weather.seven">7 DAY FORECAST</button>
+		<button type="button" class="btn btn-primary btn-sm active" ui-sref="home.weather.hourly">HOURLY FORECAST</button>
+		<button type="button" class="btn btn-primary btn-sm active" ui-sref="home.weather.lookup">SEARCH DIFFERENT LOCATION</button>
+		<button type="button" ng-show="w.alerts" class="btn btn-danger btn-sm active" ng-click="showAlert = !showAlert" >LOCAL WEATHER ALERT</button>
 	</div>
 </div><br>

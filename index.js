@@ -61,8 +61,19 @@ passport.use(new TwitterStrategy({
 	});
 }));
 
+// FACEBOOK ////////////////////////////////////////////////////////////
+
+// INSTAGRAM ////////////////////////////////////////////////////////////
+
+// TUMBLR ////////////////////////////////////////////////////////////
+
+// REDDIT ////////////////////////////////////////////////////////////
+
+
+
+
+
 app.use(express.static(__dirname+"/public"));
-app.use(bodyParser.urlencoded({extended:false}));
 app.use(session({
 	secret: secret.session,
 	resave: false,
@@ -91,7 +102,7 @@ app.get('/api/users/me', requireAuth, function(req, res) {
 
 app.get('/api/auth/twitter', passport.authenticate('twitter'));
 app.get('/api/auth/twitter/callback', passport.authenticate('twitter', {
-	successRedirect: '/#/settings',
+	successRedirect: '/#/profile',
 	failureRedirect: '/#/login'
 }));
 
@@ -106,17 +117,18 @@ app.get('/api/auth/logout', function(req, res) {
 
 
 
-
+app.use(bodyParser.json());
 // TODO ////////////////////////////////////////////////////////////
-app.get("/api/tasks/active", taskCtrl.getActiveTasks);
-app.get("/api/tasks/completed", taskCtrl.getCompletedTasks);
+app.get("/api/tasks/active/:userID", requireAuth, taskCtrl.getActiveTasks);
+app.get("/api/tasks/completed/:userID", requireAuth,taskCtrl.getCompletedTasks);
 app.get("/api/task/:id", taskCtrl.getTask);
-app.post("/api/tasks", taskCtrl.addTask);
-app.put("/api/tasks/:id", taskCtrl.editTask);
-app.post("/api/tasks/:id", taskCtrl.updateTaskProgress);
-app.put("/api/tasks/:id", taskCtrl.archiveTask);
-app.put("/api/tasks/:id", taskCtrl.reactivateTask);
-app.put("/api/tasks/:id", taskCtrl.deleteTask);
+app.post("/api/tasks", requireAuth, taskCtrl.addTask);
+app.put("/api/tasks/:userID", requireAuth, taskCtrl.addTasktoUser);
+app.put("/api/task/edit/:id", taskCtrl.editTask);
+app.post("/api/tasks/:id", requireAuth, taskCtrl.updateTaskProgress);
+app.put("/api/task/archive/:id", requireAuth, taskCtrl.archiveTask);
+app.put("/api/task/reactivate/:id", requireAuth, taskCtrl.reactivateTask);
+app.put("/api/task/delete/:id", requireAuth, taskCtrl.deleteTask);
 
 // API KEYS ////////////////////////////////////////////////////////////
 app.get("/api/nytKey/", function(req, res){ return res.send(secret.nytKey); });

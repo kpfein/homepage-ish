@@ -14,7 +14,6 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 	s.sports = Sports;
 	s.w = Weather;
 	s.currentUser = currentUser;
-	console.log("currentUser", currentUser);
 
 
 /////// WEATHER DATA CONVERSION FUNCTIONS /////////////////////////////////
@@ -66,23 +65,23 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 
 /////// TO-DO LIST /////////////////////////////////
 
-	s.getActiveTasks = function(){
-		todoService.getActiveTasks().then(function(results){
+	s.getActiveTasks = function(currentUser){
+		todoService.getActiveTasks(s.currentUser).then(function(results){
 			s.actives = results;
 		});
 	};
-	s.getActiveTasks();
+	s.getActiveTasks(s.currentUser);
 
 	s.completeTask = function(id){
 		todoService.archiveTask(id).then(function(){
 			console.log("task archived");
-			s.getActiveTasks();
+			s.getActiveTasks(s.currentUser);
 		});
 	};
 
 	s.updateTaskProgress = function(id, thisTask){
 		todoService.updateTaskProgress(id, thisTask.progress.message).then(function(){
-			s.getActiveTasks();
+			s.getActiveTasks(s.currentUser);
 			console.log("progress updated");
 		});
 	};
