@@ -2,8 +2,8 @@
 	<form>
 		Title: <input ng-model="newTask.title" placeholder="title">
 		Details: <input ng-model="newTask.details" placeholder="details">
-		Due Day: <input ng-model="newTask.due" placeholder="MM/DD/YYYY">
-		<input type="submit" value="Submit" ng-click="addTask(newTask, currentUser)">	
+		<datepicker style="width:350px" date-format="MM/dd/yyyy">Due Day: <input style="width:350px" ng-model="date" placeholder="Choose a date"></datepicker>
+		<input type="submit" value="Submit" ng-click="addTask(newTask, date, currentUser)">	
 	</form>
 
 	{{currentUser._id}}

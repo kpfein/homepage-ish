@@ -1,4 +1,4 @@
-angular.module("homepage", ["ui.router", "angular-skycons"]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
+angular.module("homepage", ["ui.router", "angular-skycons", "720kb.datepicker"]).config(function($stateProvider, $urlRouterProvider, $httpProvider){
 
 	$urlRouterProvider.otherwise("/login");
 

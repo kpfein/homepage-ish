@@ -27,11 +27,11 @@
 display: block;
 }
 
-a {
+#twit {
 	color: black;
-	
+
 }
-a:hover {
+#twit:hover {
 	color: black;
 	text-decoration: none !important;
 }

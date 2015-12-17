@@ -38,7 +38,7 @@ angular.module("homepage").service("todoService", function($q, $http){
 		return deferred.promise;
 	};
 
-	this.addTask = function(newTask, currentUser){
+	this.addTask = function(newTask, date, currentUser){
 		var deferred = $q.defer();
 		$http({
 			method: "POST",
@@ -47,7 +47,7 @@ angular.module("homepage").service("todoService", function($q, $http){
 				user: currentUser._id,
 				title: newTask.title,
 				details: newTask.details,
-				due: newTask.due
+				due: date
 			}
 		}).then(function(){
 			$http({
