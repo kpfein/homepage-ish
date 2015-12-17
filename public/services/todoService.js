@@ -7,7 +7,7 @@ angular.module("homepage").service("todoService", function($q, $http){
 			url: "/api/tasks/active/" + currentUser._id,
 		}).then(function(result){
 			activeTasks = result.data;
-			console.log(activeTasks)
+			// console.log(activeTasks)
 			deferred.resolve(activeTasks);
 		});
 		return deferred.promise;
@@ -32,7 +32,7 @@ angular.module("homepage").service("todoService", function($q, $http){
 			url: "/api/task/" + id,
 		}).then(function(result){
 			gotTask = result.data;
-			console.log(gotTask)
+			// console.log(gotTask)
 			deferred.resolve(gotTask);
 		});
 		return deferred.promise;

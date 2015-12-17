@@ -12,6 +12,7 @@ var express = require("express"),
 	// OTHER SERVER FILES ///
 	taskCtrl = require("./server-assets/controllers/taskCtrl"),
 	userCtrl = require("./server-assets/controllers/userCtrl"),
+	twitterCtrl = require("./server-assets/controllers/twitterCtrl"),
 	secret = require("./secret"),
 	User = require("./server-assets/models/userModel"),
 
@@ -129,6 +130,10 @@ app.post("/api/tasks/:id", requireAuth, taskCtrl.updateTaskProgress);
 app.put("/api/task/archive/:id", requireAuth, taskCtrl.archiveTask);
 app.put("/api/task/reactivate/:id", requireAuth, taskCtrl.reactivateTask);
 app.put("/api/task/delete/:id", requireAuth, taskCtrl.deleteTask);
+
+// TWITTER /////////////////////////////////////////////////////////////
+app.post("/api/twitter/tweet/:id", requireAuth, twitterCtrl.postTweet);
+app.get("/api/twitter/timeline/:id", requireAuth, twitterCtrl.getTimeline);
 
 // API KEYS ////////////////////////////////////////////////////////////
 app.get("/api/nytKey/", function(req, res){ return res.send(secret.nytKey); });

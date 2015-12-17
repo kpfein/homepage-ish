@@ -1,6 +1,6 @@
-<div class="container">
+<div class="main-contain">
 	<div class="row nav">
-		<div class="col-md-5">
+		<div class="col-md-4">
 			<div class="dashboard-section">
 				<h2 class="on-point" ui-sref="home.news.all">NEWS</h2>
 				<div ng-repeat="w in world|limitTo:2">
@@ -22,7 +22,7 @@
 			</div>
 			
 		</div>
-		<div class="col-md-offset-1 col-md-5">
+		<div class="col-md-4">
 			<div class="dashboard-section">
 				<h2 class="on-point" ui-sref="home.weather.current">WEATHER</h2><button ng-show="w.alerts" class="btn btn-danger btn-sm" ng-click="showAlert = !showAlert" >!</button>
 				<div class="current" id="current-temp">{{round(w.currently.temperature)}}°F</div>
@@ -61,6 +61,22 @@
 						<p>{{p.message}}</p>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
 					</div>
 					<br>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="dashboard-section">
+				<div>
+					<div id="twitter-title" class="on-point"><h2><a href="https://twitter.com">TWITTER</a></h2></div>
+					<div id="twitter-logo"><a href="https://twitter.com"><img src="/images/Twitter.png" style="width:50px"></a></div>
+				</div>
+				<form id="twitter-form">
+					Tweet: <input ng-model="tweet.status" placeholder="enter tweet text">
+					<input type="submit" value="Submit" ng-click="postTweet(tweet)">
+				</form>	
+				<br>
+				<div ng-repeat="t in timeline track by $index">
+					<p>{{t.text}}</p>
 				</div>
 			</div>
 		</div>

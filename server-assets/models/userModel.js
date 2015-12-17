@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var Task = require("./taskModel");
 
 
+
 var userSchema = new mongoose.Schema({
 
 	facebook: {
@@ -28,7 +29,7 @@ var userSchema = new mongoose.Schema({
 	},
 
 	todolist: [{
-			task: {type: String, ref: "Task"}
+		task: {type: String, ref: "Task"}
 	}],
 
 });

@@ -1,3 +1,7 @@
+.main-contain{
+	padding: 0 10 0 10;
+}
+
 .nav-container {
 	padding-top: 15px;
 	background-color: #337ab7;
@@ -17,7 +21,30 @@
 
 .on-point {
 	cursor: pointer;
+
 }
 .dropdown:hover .dropdown-menu {
 display: block;
+}
+
+a {
+	color: black;
+	
+}
+a:hover {
+	color: black;
+	text-decoration: none !important;
+}
+
+#twitter-title {
+	float: left;
+}
+
+#twitter-logo {
+	float: right;
+	padding-top: 10px;
+}
+
+#twitter-form {
+	clear: both;
 }
