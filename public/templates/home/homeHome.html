@@ -79,6 +79,21 @@
 					<p>{{t.text}}</p>
 				</div>
 			</div>
+			<br>
+			<div class="dashboard-section">
+				<div>
+					<div id="twitter-title" class="on-point"><h2><a id="twit" href="https://facebook.com">FACEBOOK</a></h2></div>
+					<div id="twitter-logo"><a href="https://facebook.com"><img src="/images/Facebook.png" style="width:40px"></a></div>
+				</div>
+				<form id="twitter-form">
+					<input ng-model="status" placeholder="Update status...">
+					<button type="submit" class="btn btn-primary btn-sm" ng-click="postStatus(status)">Update Status</button>
+				</form>	
+				<br>
+				<!-- <div ng-repeat="t in timeline track by $index">
+					<p>{{t.text}}</p>
+				</div> -->
+			</div>
 		</div>
 	</div>
 </div>

@@ -9,16 +9,6 @@ angular.module("homepage", ["ui.router", "angular-skycons", "720kb.datepicker"])
 			url: "/", 
 			templateUrl: "templates/login/loginHome.html",
 		})
-		.state("login", {
-			url: "/login", 
-			controller: "loginCtrl",
-			templateUrl: "templates/login/login.html",
-		})
-		.state("register", {
-			url: "/register", 
-			controller: "registerCtrl",
-			templateUrl: "templates/login/register.html",
-		})
 		.state("profile", {
 			url: "/profile", 
 			controller: "userCtrl",

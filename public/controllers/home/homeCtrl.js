@@ -1,4 +1,4 @@
-angular.module("homepage").controller("homeCtrl", function($scope, $stateParams, newsService, sportsService, weatherService, todoService, twitterService, World, National, Politics, Business, Technology, Opinion, Health, Arts, Fashion, Travel, Sports, Weather, currentUser){
+angular.module("homepage").controller("homeCtrl", function($scope, $stateParams, newsService, sportsService, weatherService, todoService, socialService, World, National, Politics, Business, Technology, Opinion, Health, Arts, Fashion, Travel, Sports, Weather, currentUser){
 
 	var s = $scope;
 	s.world = World;
@@ -18,14 +18,14 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 /////// TWITTER ///////////////////////////////////////////////////////////
 	
 	s.postTweet = function(){
-		twitterService.postTweet(s.tweet, s.currentUser).then(function(){
+		socialService.postTweet(s.tweet, s.currentUser).then(function(){
 			$scope.tweet = '';
 			console.log("tweet tweeted")
 		});
 	};
 
 	s.getTimeline = function(currentUser){
-		twitterService.getTimeline(s.currentUser).then(function(results){
+		socialService.getTimeline(s.currentUser).then(function(results){
 			s.timeline = results;
 			console.log(s.timeline);
 		})
@@ -34,6 +34,12 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 
 /////// FACEBOOK ///////////////////////////////////////////////////////////
 
+	s.postStatus = function(){
+		socialService.postStatus(s.status, s.currentUser).then(function(){
+			$scope.status = '';
+			console.log("status statused")
+		});
+	};
 
 
 

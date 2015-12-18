@@ -5,11 +5,15 @@ var express = require("express"),
 	http = require("http"),
 	session = require("express-session"),
 	passport = require("passport"),
+	crypto = require("crypto"),
 
 	// STRATEGIES ///
 	TwitterStrategy = require('passport-twitter').Strategy,
-	FacebookStrategy = require('passport-facebook').Strategy,
-	LocalStrategy = require("passport-local").Strategy,
+	// FacebookStrategy = require('passport-facebook').Strategy,
+	InstagramStrategy = require("passport-instagram").Strategy,
+	TumblrStrategy = require("passport-tumblr").Strategy,
+	RedditStrategy = require("passport-reddit").Strategy,
+
 
 	// OTHER SERVER FILES ///
 	taskCtrl = require("./server-assets/controllers/taskCtrl"),
@@ -44,28 +48,6 @@ passport.deserializeUser(function(id, done) {
         done(err, user);
     });
 });
-
-
-// LOCAL ////////////////////////////////////////////////////////////
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { 
-      	return done(err);
-      }
-      if (!user) { 
-      	return done(null, false); 
-      }
-      user.verifyPassword(password).then(function(result) {
-      	if (!result) {
-      		return done(null, false); 
-      	}
-      	return done(null, user);
-      });
-    });
-}));
-
 
 
 // TWITTER ////////////////////////////////////////////////////////////
@@ -130,24 +112,81 @@ passport.use(new TwitterStrategy({
 
 // FACEBOOK ////////////////////////////////////////////////////////////
 
-passport.use(new FacebookStrategy({
+// passport.use(new FacebookStrategy({
 
-        clientID: secret.facebook_clientID,
-        clientSecret: secret.facebook_clientSecret,
-        callbackURL: "http://localhost:9999/api/auth/facebook/callback",
-        passReqToCallback : true
+//         clientID: secret.facebook_clientID,
+//         clientSecret: secret.facebook_clientSecret,
+//         callbackURL: "http://localhost:9999/api/auth/facebook/callback",
+//         passReqToCallback : true
 
-    },
-    function(req, token, refreshToken, profile, done) {
-        process.nextTick(function() {
+//     },
+//     function(req, token, refreshToken, profile, done) {
+//         process.nextTick(function() {
+//             if (!req.user) {
+//                 User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+//                     if (err){
+//                     	return done(err);
+//                     }
+//                     if (user) {
+//                         if (!user.facebook.token) {
+//                             user.facebook.token = token;
+
+//                             user.save(function(err) {
+//                                 if (err){
+//                                 	console.log(err);
+//                                 }
+//                                 return done(null, user);
+//                             });
+//                         }
+//                         return done(null, user); 
+//                     } else {
+//                         var newUser = new User();
+
+//                         newUser.facebook.id = profile.id;
+//                         newUser.facebook.token = token;
+
+//                         newUser.save(function(err) {
+//                             if (err){
+//                             	console.log(err);
+//                             }
+//                             return done(null, newUser);
+//                         });
+//                     }
+//                 });
+//             } else {
+//                 var user = req.user;
+
+//                 user.facebook.id = profile.id;
+//                 user.facebook.token = token;
+
+//                 user.save(function(err) {
+//                     if (err)
+//                         throw err;
+//                     return done(null, user);
+//                 });
+//             }
+//         });
+//     }));
+
+
+
+// INSTAGRAM ////////////////////////////////////////////////////////////
+
+passport.use(new InstagramStrategy({
+	clientID: secret.instagram_clientID,
+	clientSecret: secret.instagram_clientSecret,
+	callbackURL: 'http://localhost:9999/api/auth/instagram/callback',
+	passReqToCallback : true
+}, function(req, token, tokenSecret, profile, done) {
+	process.nextTick(function() {
             if (!req.user) {
-                User.findOne({ 'facebook.id' : profile.id }, function(err, user) {
+                User.findOne({ 'instagram.id' : profile.id }, function(err, user) {
                     if (err){
                     	return done(err);
                     }
                     if (user) {
-                        if (!user.facebook.token) {
-                            user.facebook.token = token;
+                        if (!user.instagram.token) {
+                            user.instagram.token = token;
 
                             user.save(function(err) {
                                 if (err){
@@ -160,8 +199,8 @@ passport.use(new FacebookStrategy({
                     } else {
                         var newUser = new User();
 
-                        newUser.facebook.id = profile.id;
-                        newUser.facebook.token = token;
+                        newUser.instagram.id = profile.id;
+                        newUser.instagram.token = token;
 
                         newUser.save(function(err) {
                             if (err){
@@ -174,8 +213,8 @@ passport.use(new FacebookStrategy({
             } else {
                 var user = req.user;
 
-                user.facebook.id = profile.id;
-                user.facebook.token = token;
+                    user.instagram.id = profile.id;
+                    user.instagram.token = token;
 
                 user.save(function(err) {
                     if (err)
@@ -186,14 +225,117 @@ passport.use(new FacebookStrategy({
         });
     }));
 
-
-
-// INSTAGRAM ////////////////////////////////////////////////////////////
-
 // TUMBLR ////////////////////////////////////////////////////////////
 
-// REDDIT ////////////////////////////////////////////////////////////
+passport.use(new TumblrStrategy({
+	consumerKey: secret.tumblr_consumerKey,
+	consumerSecret: secret.tumblr_consumerSecret,
+	callbackURL: 'http://localhost:9999/api/auth/tumblr/callback',
+	passReqToCallback : true
+}, function(req, token, tokenSecret, profile, done) {
+	process.nextTick(function() {
+            if (!req.user) {
+                User.findOne({ 'tumblr.id' : profile.id }, function(err, user) {
+                    if (err){
+                    	return done(err);
+                    }
+                    if (user) {
+                        if (!user.tumblr.token || !user.tumblr.tokenSecret) {
+                            user.tumblr.token = token;
+                            user.tumblr.tokenSecret = tokenSecret
 
+                            user.save(function(err) {
+                                if (err){
+                                	console.log(err);
+                                }
+                                return done(null, user);
+                            });
+                        }
+                        return done(null, user); 
+                    } else {
+                        var newUser = new User();
+
+                        newUser.tumblr.id = profile.id;
+                        newUser.tumblr.token = token;
+                        newUser.tumblr.tokenSecret = tokenSecret;
+
+                        newUser.save(function(err) {
+                            if (err){
+                            	console.log(err);
+                            }
+                            return done(null, newUser);
+                        });
+                    }
+                });
+            } else {
+                var user = req.user;
+
+                    user.tumblr.id = profile.id;
+                    user.tumblr.token = token;
+                    user.tumblr.tokenSecret = tokenSecret;
+
+                user.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
+            }
+        });
+    }));
+
+// REDDIT ////////////////////////////////////////////////////////////
+passport.use(new RedditStrategy({
+	clientID: secret.reddit_clientID,
+	clientSecret: secret.reddit_clientSecret,
+	callbackURL: 'http://localhost:9999/api/auth/reddit/callback',
+	passReqToCallback : true
+}, function(req, token, tokenSecret, profile, done) {
+	process.nextTick(function() {
+            if (!req.user) {
+                User.findOne({ 'reddit.id' : profile.id }, function(err, user) {
+                    if (err){
+                    	return done(err);
+                    }
+                    if (user) {
+                        if (!user.reddit.token) {
+                            user.reddit.token = token;
+
+                            user.save(function(err) {
+                                if (err){
+                                	console.log(err);
+                                }
+                                return done(null, user);
+                            });
+                        }
+                        return done(null, user); 
+                    } else {
+                        var newUser = new User();
+
+                        newUser.reddit.id = profile.id;
+                        newUser.reddit.token = token;
+
+                        newUser.save(function(err) {
+                            if (err){
+                            	console.log(err);
+                            }
+                            return done(null, newUser);
+                        });
+                    }
+                });
+            } else {
+                var user = req.user;
+
+                    user.reddit.id = profile.id;
+                    user.reddit.token = token;
+
+                user.save(function(err) {
+                    if (err)
+                        throw err;
+                    return done(null, user);
+                });
+            }
+        });
+    }));
 
 
 
@@ -209,30 +351,6 @@ var requireAuth = function(req, res, next) {
 app.get('/api/users/me', requireAuth, function(req, res) {
 	return res.json(req.user);
 });
-
-// LOCAL ////////////////////////////////////////////////////////////
-
-// register
-app.post('/api/users', function(req, res) {
-	User.findOne({ username: req.body.username }).exec().then(function(user) {
-		if (user) {
-			return res.status(409).end();
-		}
-		user = new User({
-			username: req.body.username,
-			password: req.body.password
-		});
-		user.save().then(function(err, result) {
-			return res.status(201).end();
-		});
-	});
-});
-
-// login
-app.post('/api/auth/local', passport.authenticate('local', {
-	successRedirect : '#//profile', 
-	failureRedirect : '/#/login', 
-}));
 
 // TWITTER ////////////////////////////////////////////////////////////
 
@@ -250,17 +368,88 @@ app.get('/api/connect/twitter/callback', passport.authorize('twitter', {
 
 // FACEBOOK ////////////////////////////////////////////////////////////
 
-app.get('/api/auth/facebook', passport.authenticate('facebook'));
-app.get('/api/auth/facebook/callback', passport.authenticate('facebook', {
+// app.get('/api/auth/facebook', passport.authenticate('facebook'));
+// app.get('/api/auth/facebook/callback', passport.authenticate('facebook', {
+// 	successRedirect: '/#/profile',
+// 	failureRedirect: '/#/'
+// }));
+
+// app.get('/api/connect/facebook', passport.authorize('facebook'));
+// app.get('/api/connect/facebook/callback', passport.authorize('facebook', {
+// 	successRedirect: '/#/profile',
+// 	failureRedirect: '/#/'
+// }));
+
+// INSTAGRAM ////////////////////////////////////////////////////////////
+
+app.get('/api/auth/instagram', passport.authenticate('instagram'));
+app.get('/api/auth/instagram/callback', passport.authenticate('instagram', {
 	successRedirect: '/#/profile',
 	failureRedirect: '/#/'
 }));
 
-app.get('/api/connect/facebook', passport.authorize('facebook'));
-app.get('/api/connect/facebook/callback', passport.authorize('facebook', {
+app.get('/api/connect/instagram', passport.authorize('instagram'));
+app.get('/api/connect/instagram/callback', passport.authorize('instagram', {
 	successRedirect: '/#/profile',
 	failureRedirect: '/#/'
 }));
+
+// TUMBLR ////////////////////////////////////////////////////////////
+
+app.get('/api/auth/tumblr', passport.authenticate('tumblr'));
+app.get('/api/auth/tumblr/callback', passport.authenticate('tumblr', {
+	successRedirect: '/#/profile',
+	failureRedirect: '/#/'
+}));
+
+app.get('/api/connect/tumblr', passport.authorize('tumblr'));
+app.get('/api/connect/tumblr/callback', passport.authorize('tumblr', {
+	successRedirect: '/#/profile',
+	failureRedirect: '/#/'
+}));
+
+// REDDIT ////////////////////////////////////////////////////////////
+
+app.get('/api/auth/reddit', function(req, res, next){
+  req.session.state = crypto.randomBytes(32).toString('hex');
+  passport.authenticate('reddit', {
+    state: req.session.state,
+    duration: 'permanent',
+  })(req, res, next);
+});
+app.get('/api/auth/reddit/callback', function(req, res, next){
+  if (req.query.state === req.session.state){
+    passport.authenticate('reddit', {
+      successRedirect: '/#/profile',
+      failureRedirect: '/'
+    })(req, res, next);
+  }
+  else {
+    next( new Error(403) );
+  }
+});
+
+app.get('/api/connect/reddit', function(req, res, next){
+  req.session.state = crypto.randomBytes(32).toString('hex');
+  passport.authenticate('reddit', {
+    state: req.session.state,
+    duration: 'permanent',
+  })(req, res, next);
+});
+
+app.get('/api/connect/reddit/callback', function(req, res, next){
+  if (req.query.state === req.session.state){
+    passport.authenticate('reddit', {
+      successRedirect: '/#/profile',
+      failureRedirect: '/'
+    })(req, res, next);
+  }
+  else {
+    next( new Error(403) );
+  }
+});
+
+
 
 // LOGOUT ////////////////////////////////////////////////////////////
 

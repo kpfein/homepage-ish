@@ -23,15 +23,20 @@ var userSchema = new mongoose.Schema({
 	},
 
 	instagram: {
-
+		id: {type: String},
+		token: {type: String}
 	},
 
 	tumblr: {
-
+		id: {type: String},
+		token: {type: String},
+		tokenSecret: {type: String}
 	},
 
 	reddit: {
-
+		id: {type: String},
+		token: {type: String},
+		tokenSecret: {type: String}
 	},
 
 	todolist: [{

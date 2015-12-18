@@ -1,5 +1,6 @@
-angular.module("homepage").service("twitterService", function($q, $http){
+angular.module("homepage").service("socialService", function($q, $http){
 
+// TWITTER ////////////////////////////////////////////////////
 	this.postTweet = function(tweet, currentUser){
 		var deferred = $q.defer();
 		$http({
@@ -26,6 +27,20 @@ angular.module("homepage").service("twitterService", function($q, $http){
 		});
 		return deferred.promise;
 	}
+
+// FACEBOOK ////////////////////////////////////////////////////
+
+	this.postStatus = function(status, currentUser){
+		var deferred = $q.defer();
+		$http({
+			method: "POST",
+			url: "/graph.facebook.com/" + currentUser.facebook.id + "/feed?message=" + status + "&amp;access_token=" + currentUser.facebook.token,
+		}).then(function(){
+			deferred.resolve();
+		});
+		return deferred.promise;
+	}
+
 
 
 
