@@ -19,6 +19,28 @@ angular.module("homepage").service("userService", function($http, $q){
 		return defer.promise;
 	};
 
+	this.register = function(newUser){
+	    return $http({
+	      method: 'POST',
+	      url: '/api/users',
+	      data: newUser
+	    });
+	  };
+
+	this.login = function(thisUser){
+		var defer = $q.defer();
+		$http({
+			method: "POST",
+			url: "/api/auth/local",
+			data: thisUser,
+		}).then(function(result){
+			console.log("logged in");
+			defer.resolve(result.data);
+		});
+		return defer.promise;
+	}
+
+
 	this.logout = function() {
 		user = null;
 		var defer = $q.defer();

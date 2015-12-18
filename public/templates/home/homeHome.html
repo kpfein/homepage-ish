@@ -71,8 +71,8 @@
 					<div id="twitter-logo"><a href="https://twitter.com"><img src="/images/Twitter.png" style="width:50px"></a></div>
 				</div>
 				<form id="twitter-form">
-					Tweet: <input ng-model="tweet.status" placeholder="enter tweet text">
-					<input type="submit" value="Submit" ng-click="postTweet(tweet)">
+					<input ng-model="tweet.status" placeholder="Tweet here...">
+					<button type="submit" class="btn btn-primary btn-sm" ng-click="postTweet(tweet)">Tweet</button>
 				</form>	
 				<br>
 				<div ng-repeat="t in timeline track by $index">

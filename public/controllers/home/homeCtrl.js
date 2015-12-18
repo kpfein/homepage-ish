@@ -19,7 +19,7 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 	
 	s.postTweet = function(){
 		twitterService.postTweet(s.tweet, s.currentUser).then(function(){
-			s.tweet = "";
+			$scope.tweet = '';
 			console.log("tweet tweeted")
 		});
 	};
@@ -31,6 +31,9 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 		})
 	}
 	s.getTimeline(s.currentUser)
+
+/////// FACEBOOK ///////////////////////////////////////////////////////////
+
 
 
 

@@ -1,13 +1,13 @@
-<button class="btn btn-lg btn-primary" ng-if="!currentUser.facebook">ADD FACEBOOK</button>
-<button class="btn btn-lg btn-primary" ng-if="!currentUser.twitter">ADD TWITTER</button>
-<button class="btn btn-lg btn-primary" ng-if="!currentUser.instagram">ADD INSTAGRAM</button>
-<button class="btn btn-lg btn-primary" ng-if="!currentUser.tumblr">ADD TUMBLR</button>
-<button class="btn btn-lg btn-primary" ng-if="!currentUser.reddit">ADD REDDIT</button>
+<a href="/api/connect/facebook"><button class="btn btn-lg btn-primary" ng-if="!currentUser.facebook">ADD FACEBOOK</button></a>
+<a href="/api/connect/twitter"><button class="btn btn-lg btn-primary" ng-if="!currentUser.twitter">ADD TWITTER</button></a>
+<a href="/api/connect/instagram"><button class="btn btn-lg btn-primary" ng-if="!currentUser.instagram">ADD INSTAGRAM</button></a>
+<a href="/api/connect/tumblr"><button class="btn btn-lg btn-primary" ng-if="!currentUser.tumblr">ADD TUMBLR</button></a>
+<a href="/api/connect/reddit"><button class="btn btn-lg btn-primary" ng-if="!currentUser.reddit">ADD REDDIT</button></a>
 <button class="btn btn-lg btn-primary" ui-sref="home.dashboard">CONTINUE TO HOMEPAGE</button>
 <button class="btn btn-lg btn-primary" ui-sref="logout">LOGOUT</button>
-<div ng-show="currentUser.facebook.username">
+<div ng-show="currentUser.facebook.id">
 	<h2>FACEBOOK</h2>
-	<p>{{currentUser.facebook.username}}</p>
+	<p>{{currentUser.facebook.id}}</p>
 </div>
 <div ng-show="currentUser.twitter.username">
 	<h2>TWITTER</h2>
