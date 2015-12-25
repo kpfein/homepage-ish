@@ -1,8 +1,31 @@
-<div>
-	<form>
-	Title: <input ng-model="thisTask.title" placeholder="title...">
-	Details: <input ng-model="thisTask.details" placeholder="details...">
-	Due Date: <input ng-model="thisTask.due" placeholder="Due Date...">
-	<input type="submit" value="Submit" ng-click="updateTask(thisTask)" ui-sref="home.todo.active">	
-	</form>
+<div class="jumbotron section-1">
+	<div id="nav-contain">
+		<h2>EDIT TASK</h2>
+	</div>
+</div>
+
+<div class="jumbotron section-6">
+	<div id="nav-contain">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="task-title" class="col-md-1 control-label">Title</label>
+				<div class="col-md-5">
+					<input id="task-title" class="form-control" ng-model="thisTask.title" placeholder="title">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="task-details" class="col-md-1 control-label">Details</label>
+				<div class="col-md-5">
+					<input id="task-details" class="form-control" ng-model="thisTask.details" placeholder="details">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="task-due" class="col-md-1 control-label">Due Day</label>
+				<div class="col-md-5">
+					<datepicker date-format="MM/dd/yyyy"><input id="task-due" class="form-control" ng-model="thisTask.due" placeholder="Choose a date"></datepicker>
+				</div>
+			</div>
+			<button class="col-md-1 news-buttonz" type="submit" ng-click="updateTask(thisTask)" ui-sref="home.todo.active">Submit</button>
+		</form>
+	</div>
 </div>

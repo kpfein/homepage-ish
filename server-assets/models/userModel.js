@@ -10,10 +10,10 @@ var userSchema = new mongoose.Schema({
 	username: {type: String},
 	password: {type: String},
 	
-	facebook: {
-		id: {type: String},
-		token: {type: String}
-	},
+	// facebook: {
+	// 	id: {type: String},
+	// 	token: {type: String}
+	// },
 
 	twitter: {
 		id: {type: String},

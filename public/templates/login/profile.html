@@ -1,15 +1,32 @@
-<a href="/api/connect/facebook"><button class="btn btn-lg btn-primary" ng-if="!currentUser.facebook">ADD FACEBOOK</button></a>
-<a href="/api/connect/twitter"><button class="btn btn-lg btn-primary" ng-if="!currentUser.twitter">ADD TWITTER</button></a>
-<a href="/api/connect/instagram"><button class="btn btn-lg btn-primary" ng-if="!currentUser.instagram">ADD INSTAGRAM</button></a>
-<a href="/api/connect/tumblr"><button class="btn btn-lg btn-primary" ng-if="!currentUser.tumblr">ADD TUMBLR</button></a>
-<a href="/api/connect/reddit"><button class="btn btn-lg btn-primary" ng-if="!currentUser.reddit">ADD REDDIT</button></a>
-<button class="btn btn-lg btn-primary" ui-sref="home.dashboard">CONTINUE TO HOMEPAGE</button>
-<button class="btn btn-lg btn-primary" ui-sref="logout">LOGOUT</button>
-<div ng-show="currentUser.facebook.id">
+
+<div class="login-contain">
+	<div class="button-container">
+		<!-- <div><a href="/api/connect/facebook"><button class="btn btn-lg btn-primary" ng-if="!currentUser.facebook">ADD FACEBOOK</button></a></div> -->
+		<div><a href="/api/connect/twitter"><button class="btn btn-lg buttonz" ng-if="!currentUser.twitter">ADD TWITTER</button></a></div>
+		<br>
+		<div><a href="/api/connect/instagram"><button class="btn btn-lg buttonz" ng-if="!currentUser.instagram">ADD INSTAGRAM</button></a></div>
+		<br>
+		<div><a href="/api/connect/tumblr"><button class="btn btn-lg buttonz" ng-if="!currentUser.tumblr">ADD TUMBLR</button></a></div>
+		<br>
+		<div><a href="/api/connect/reddit"><button class="btn btn-lg buttonz" ng-if="!currentUser.reddit">ADD REDDIT</button></a></div>
+		<br>
+		<div><button class="btn btn-lg buttonz" ui-sref="home.dashboard">GO TO HOMEPAGE</button></div>
+		<br>
+		<div><button class="btn btn-lg buttonz" ui-sref="logout">LOGOUT</button></div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<!-- <div ng-show="currentUser.facebook.id">
 	<h2>FACEBOOK</h2>
 	<p>{{currentUser.facebook.id}}</p>
-</div>
-<div ng-show="currentUser.twitter.username">
+</div> -->
+<!-- <div ng-show="currentUser.twitter.username">
 	<h2>TWITTER</h2>
 	<p>{{currentUser.twitter.username}}</p>
 </div>
@@ -24,4 +41,4 @@
 <div ng-show="currentUser.reddit.token">
 	<h2>REDDIT</h2>
 	<p>{{currentUser.reddit.token}}</p>
-</div>
+</div> -->

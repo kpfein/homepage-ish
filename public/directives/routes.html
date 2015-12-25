@@ -1,47 +1,58 @@
-<div class="nav-container">
-	<div class="row nav col-md-10">
+<div id="nav-container">
+	<div id="nav-contain">
 		<div class="btn-group">
-			<button class="btn btn-lg btn-primary" ui-sref="home.dashboard">HOME</button>
-
-			<div class="dropdown btn-group">
-				<button class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">WEATHER <span class="caret"></span></button>
-					<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-						<li role="menuitem"><a ui-sref="home.weather.current">CURRENT</a></li>
-						<li role="menuitem"><a ui-sref="home.weather.seven">7 DAY FORECAST</a></li>
-						<li role="menuitem"><a ui-sref="home.weather.hourly">HOURLY FORECAST</a></li>
-						<li role="menuitem"><a ui-sref="home.weather.lookup">SEARCH LOCATIONS</a></li>
-					</ul>
+			<div class="btn-group">
+				<button class="btn btn-lg nav-buttonz" ui-sref="home.dashboard">HOME</button>
 			</div>
 
 			<div class="dropdown btn-group">
-			    <button class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">NEWS <span class="caret"></span></button>
-			    	<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-				        <li role="menuitem"><a ui-sref="home.news.all">ALL</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.world">WORLD</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.national">NATIONAL</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.politics">POLITICS</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.business">BUSINESS</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.technology">TECHNOLOGY</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.opinion">OPINION</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.health">HEALTH</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.arts">ARTS</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.fashion">FASHION</a></li>
-				        <li role="menuitem"><a ui-sref="home.news.travel">TRAVEL</a></li>
-			      	</ul>
-			</div>
-			<div class="dropdown btn-group">
-				<button class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">TO-DO LIST <span class="caret"></span></button>
+				<button class="btn btn-lg nav-buttonz dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">TO-DO <span class="caret"></span> </button>
 			   		<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
 				        <li role="menuitem"><a ui-sref="home.todo.active">ACTIVE</a></li>
 				        <li role="menuitem"><a ui-sref="home.todo.complete">COMPLETED</a></li>
 				        <li role="menuitem"><a ui-sref="home.todo.add">ADD TASK</a></li>
 				    </ul>
 			</div>
+			
+			<div class="dropdown btn-group">
+				<button class="btn btn-lg nav-buttonz dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">WEATHER <span class="caret"></span> </button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+						<li role="menuitem"><a ui-sref="home.weather.current">CURRENT</a></li>
+						<li role="menuitem"><a ui-sref="home.weather.seven">7 DAY</a></li>
+						<li role="menuitem"><a ui-sref="home.weather.hourly">HOURLY</a></li>
+						<li role="menuitem"><a ui-sref="home.weather.lookup">SEARCH</a></li>
+					</ul>
+			</div>
 
-			<button class="btn btn-lg btn-primary" ui-sref="home.sports">SPORTS</button>
-			<button class="btn btn-lg btn-primary" ui-sref="profile">PROFILE</button>
-			<button class="btn btn-lg btn-primary" ui-sref="logout">LOGOUT</button>
 
+			<div class="btn-group">
+				<div class="dropdown btn-group">
+				    <button class="btn btn-lg nav-buttonz dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">NEWS <span class="caret"></span> </button>
+				    	<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+					        <li role="menuitem"><a ui-sref="home.news.all">ALL</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.world">WORLD</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.national">NATIONAL</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.politics">POLITICS</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.business">BUSINESS</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.technology">TECHNOLOGY</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.opinion">OPINION</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.health">HEALTH</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.arts">ARTS</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.fashion">FASHION</a></li>
+					        <li role="menuitem"><a ui-sref="home.news.travel">TRAVEL</a></li>
+				      	</ul>
+				</div>
+
+
+				<button class="btn btn-lg nav-buttonz" ui-sref="home.sports">SPORTS</button>
+				<div class="dropdown btn-group">
+					<button class="btn btn-lg nav-buttonz dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">SETTINGS <span class="caret"></span> </button>
+				   		<ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
+					        <li role="menuitem"><a ui-sref="profile">PROFILE</a></li>
+					        <li role="menuitem"><a ui-sref="logout">LOGOUT</a></li>
+					    </ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

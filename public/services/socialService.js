@@ -30,16 +30,16 @@ angular.module("homepage").service("socialService", function($q, $http){
 
 // FACEBOOK ////////////////////////////////////////////////////
 
-	this.postStatus = function(status, currentUser){
-		var deferred = $q.defer();
-		$http({
-			method: "POST",
-			url: "/graph.facebook.com/" + currentUser.facebook.id + "/feed?message=" + status + "&amp;access_token=" + currentUser.facebook.token,
-		}).then(function(){
-			deferred.resolve();
-		});
-		return deferred.promise;
-	}
+	// this.postStatus = function(status, currentUser){
+	// 	var deferred = $q.defer();
+	// 	$http({
+	// 		method: "POST",
+	// 		url: "/graph.facebook.com/" + currentUser.facebook.id + "/feed?message=" + status + "&amp;access_token=" + currentUser.facebook.token,
+	// 	}).then(function(){
+	// 		deferred.resolve();
+	// 	});
+	// 	return deferred.promise;
+	// }
 
 
 

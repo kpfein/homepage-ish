@@ -34,12 +34,12 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 
 /////// FACEBOOK ///////////////////////////////////////////////////////////
 
-	s.postStatus = function(){
-		socialService.postStatus(s.status, s.currentUser).then(function(){
-			$scope.status = '';
-			console.log("status statused")
-		});
-	};
+	// s.postStatus = function(){
+	// 	socialService.postStatus(s.status, s.currentUser).then(function(){
+	// 		$scope.status = '';
+	// 		console.log("status statused")
+	// 	});
+	// };
 
 
 

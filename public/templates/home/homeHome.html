@@ -1,8 +1,74 @@
-<div class="main-contain">
-	<div class="row nav">
-		<div class="col-md-4">
-			<div class="dashboard-section">
+<div class="row">
+	<div class="col-md-6 abc">
+		<div class="jumbotron section-3">
+			<div id="nav-contain">
+				<h2>SOCIAL MEDIA</h2>
+				<hr>
+				<h3 class="on-point" href="http://www.twitter.com">TWITTER</h3>
+				<form id="twitter-form">
+					<input ng-model="tweet.status" placeholder="Tweet here...">
+					<button type="submit" class="btn btn-primary btn-sm" ng-click="postTweet(tweet)">Tweet</button>
+				</form>	
+				<br>
+				<div ng-repeat="t in timeline track by $index">
+					<p>{{t.text}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<div class="col-md-6 abc">
+
+		<div class="jumbotron section-6">
+			<div id="nav-contain">
+				<form class="form-inline">
+					<div class="form-group">
+						<h2 class="on-point" ui-sref="home.todo.active">TO-DO LIST </h2>
+					</div>
+					<button type="button" class="btn news-buttonz btn-xs" id="task-button" ui-sref="home.todo.add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+				</form>
+				<hr>
+				<div ng-repeat="a in actives">
+					<form class="form-inline">
+						<div class="form-group">
+							<h2>{{a.title}} </h2>
+						</div>
+						<button type="button" ng-click="showTaskButtons = !showTaskButtons" class="btn news-buttonz btn-xs" id="task-button" data-toggle="tooltip" title="Task Controls"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></button>
+						<div class="btn-group" ng-show="showTaskButtons">
+							<button class="btn news-buttonz btn-sm" data-toggle="tooltip" title="Edit Task" ui-sref="home.todo.edit({id: a._id})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+							<button class="btn news-buttonz btn-sm" data-toggle="tooltip" title="Update Progress" ng-click="updateProgress = !updateProgress"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+							<button class="btn news-buttonz btn-sm" data-toggle="tooltip" title="Mark Completed" ng-click="completeTask(a._id)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+						</div>
+					</form>
+					<h5>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</h5>
+					<h5>Due Date: {{a.due | date: "EEEE, MMMM d"}}</h5>
+					<h5>{{a.details}}</h5>
+
+					<div ng-show="updateProgress">
+						<br>
+						<form class="form-inline">
+							<div class="form-group">
+								<label for="task-update" class="control-label">Progress Update</label>
+								<input ng-model="thisTask.progress.message" type="text" id="task-update" class="form-control" style="width: 300px" placeholder="update on task progress">
+							</div>
+							<button class="btn news-buttonz" type="submit" ng-click="updateTaskProgress(a._id, thisTask)">Submit</button>
+						</form>
+					</div>
+					<div ng-repeat="p in a.progress">
+						<hr>
+						<h5>{{p.message}}</h5>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
+					</div>
+					<hr>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="jumbotron section-2">
+			<div id="nav-contain">
 				<h2 class="on-point" ui-sref="home.news.all">NEWS</h2>
+				<hr>	
 				<div ng-repeat="w in world|limitTo:2">
 					<a target="_blank" href="{{w.url}}">{{w.title}}</a>
 				</div>
@@ -13,87 +79,55 @@
 					<a target="_blank" href="{{p.url}}">{{p.title}}</a>
 				</div>
 			</div>
-			<br>
-			<div class="dashboard-section">
+		</div>
+
+
+		<div class="jumbotron section-4">
+			<div id="nav-contain">
+				<h2 class="on-point" ui-sref="home.weather.current">WEATHER <button ng-show="w.alerts" class="btn btn-danger btn-sm" ng-click="showAlert = !showAlert" ><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></button></h2>
+				<hr>
+				
+				<div class="current"><skycon icon="w.currently.icon"></skycon></div>
+				<div class="current">
+					<div>{{w.currently.summary}}</div>
+					<div> {{round(w.currently.temperature)}}°F</div>
+					<div>Feels Like: {{round(w.currently.apparentTemperature)}}°F</div>
+					<div>Hi: {{round(w.daily.data[0].temperatureMax)}}°F | Lo: {{round(w.daily.data[0].temperatureMin)}}°F</div>
+				</div>
+				<div id="current">
+					<div id="current-child">
+						<div>Dew Point: {{round(w.currently.dewPoint)}}° | Humidity: {{percentage(w.currently.humidity)}}%</div>
+						<div>Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
+						<div>Wind: {{round(w.currently.windSpeed)}} mph | {{direction(w.currently.windBearing)}}</div>
+						<div>Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
+					</div>
+				</div>
+				<div class="well well-sm" ng-show="!toggleUnits" ng-repeat="w in w.daily.data" ng-click="isCollapsed = !isCollapsed">
+					<div class="day-date">{{convertDate(w.time) | date: "EEEE"}}</div>
+					<hr>
+					<div class="current"><skycon icon="w.icon"></skycon></div>
+					<hr>
+					<div class="day-hi-lo">Hi: {{round(w.temperatureMax)}}°F | Lo: {{round(w.temperatureMin)}}°F</div>
+					<div class="day-precip">Precip: {{percentage(w.precipProbability)}}%</div>				
+				</div>
+			</div>
+		</div>
+
+
+		<div class="jumbotron section-5">
+			<div id="nav-contain">
 				<h2 class="on-point" ui-sref="home.sports">SPORTS</h2>
-				<div ng-repeat="s in sports|limitTo:5">
+				<hr>
+				<div ng-repeat="s in sports|limitTo:6">
 					<a target="_blank" href="{{s.url}}">{{s.title}}</a>
 				</div>
 			</div>
-			
 		</div>
-		<div class="col-md-4">
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.weather.current">WEATHER</h2><button ng-show="w.alerts" class="btn btn-danger btn-sm" ng-click="showAlert = !showAlert" >!</button>
-				<div class="current" id="current-temp">{{round(w.currently.temperature)}}°F</div>
-				<div class="current"><skycon icon="w.currently.icon"></skycon></div>
-				<div class="current current-text">{{w.currently.summary}}</div>
-				<div class="current current-text">Feels Like: {{round(w.currently.apparentTemperature)}}°F</div>
-				<div class="current current-text">Hi: {{round(w.daily.data[0].temperatureMax)}}°F | Lo: {{round(w.daily.data[0].temperatureMin)}}°F</div>
-				<div class="current current-text">Dew Point: {{round(w.currently.dewPoint)}}°</div>
-				<div class="current current-text">Humidity: {{percentage(w.currently.humidity)}}%</div>
-				<div class="current current-text">Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
-				<div class="current current-text">Wind: {{round(w.currently.windSpeed)}} mph | {{direction(w.currently.windBearing)}}</div>
-				<div class="current current-text">Visibility: {{w.currently.visibility}} mi</div>
-				<div class="current current-text">Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.todo.active">TO-DO LIST</h2>
-				<div class="dashboard-section" ng-repeat="a in actives">
-					<h2>{{a.title}}</h2>
-					<p>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</p>
-					<p>Due Date: {{a.due | date: "EEEE, MMMM d"}}</p>
-					<p>{{a.details}}</p>
-					<button class="btn btn-primary btn-sm" ui-sref="home.todo.edit({id: a._id})">Edit Task</button>
-					<button class="btn btn-primary btn-sm" ng-click="updateProgress = !updateProgress" >Update Progress</button>
-					<button class="btn btn-primary btn-sm" ng-click="completeTask(a._id)">Mark Completed</button>
 
-					<div ng-show="updateProgress">
-						<br>
-						<form>
-							Update: <input ng-model="thisTask.progress.message" placeholder="update on task progress">
-							<input type="submit" value="Submit" ng-click="updateTaskProgress(a._id, thisTask)">	
-						</form>
-					</div>
-					<div ng-repeat="p in a.progress">
-						<hr>
-						<p>{{p.message}}</p>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
-					</div>
-					<br>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-3">
-			<div class="dashboard-section">
-				<div>
-					<div id="twitter-title" class="on-point"><h2><a id="twit" href="https://twitter.com">TWITTER</a></h2></div>
-					<div id="twitter-logo"><a href="https://twitter.com"><img src="/images/Twitter.png" style="width:50px"></a></div>
-				</div>
-				<form id="twitter-form">
-					<input ng-model="tweet.status" placeholder="Tweet here...">
-					<button type="submit" class="btn btn-primary btn-sm" ng-click="postTweet(tweet)">Tweet</button>
-				</form>	
-				<br>
-				<div ng-repeat="t in timeline track by $index">
-					<p>{{t.text}}</p>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<div>
-					<div id="twitter-title" class="on-point"><h2><a id="twit" href="https://facebook.com">FACEBOOK</a></h2></div>
-					<div id="twitter-logo"><a href="https://facebook.com"><img src="/images/Facebook.png" style="width:40px"></a></div>
-				</div>
-				<form id="twitter-form">
-					<input ng-model="status" placeholder="Update status...">
-					<button type="submit" class="btn btn-primary btn-sm" ng-click="postStatus(status)">Update Status</button>
-				</form>	
-				<br>
-				<!-- <div ng-repeat="t in timeline track by $index">
-					<p>{{t.text}}</p>
-				</div> -->
-			</div>
-		</div>
+
+
+
 	</div>
+
+
 </div>

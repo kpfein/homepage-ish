@@ -1,10 +1,18 @@
-<h1>SPORTS</h1>
-
-<div ng-repeat="s in sports">
-	<a href="{{s.url}}">{{s.title}}</a> | {{s.byline}}
-	<p>{{s.abstract}}..</p>
-	<hr>
-
-
+<div class="jumbotron main-heading">
+	<div id="nav-contain">
+		<h1>SPORTS</h1>
+	</div>
 </div>
+
+<div class="jumbotron section-6">
+	<div id="nav-contain">
+		<div ng-repeat="s in sports">
+			<a href="{{s.url}}">{{s.title}}</a> | {{s.byline}}
+			<p>{{s.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
+
+
 

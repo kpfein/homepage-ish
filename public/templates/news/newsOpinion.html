@@ -1,8 +1,11 @@
-<div>
-	<h2>OPINION</h2>
-	<div ng-repeat="o in opinion">
-		<a href="{{o.url}}">{{o.title}}</a> | {{o.byline}}
-		<p>{{o.abstract}}..</p>
-		<hr>
+<div class="jumbotron section-6">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.opinion">OPINION</h2>
+		<div ng-repeat="o in opinion">
+			<a target="_blank" href="{{o.url}}">{{o.title}}</a>
+			<p>{{o.byline}}</p>
+			<p>{{o.abstract}}..</p>
+			<hr>
+		</div>
 	</div>
 </div>

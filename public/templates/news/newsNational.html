@@ -1,8 +1,11 @@
-<div>
-	<h2>NATIONAL</h2>
-	<div ng-repeat="n in national">
-		<a href="{{n.url}}">{{n.title}}</a> | {{n.byline}}
-		<p>{{n.abstract}}..</p>
-		<hr>
+<div class="jumbotron section-2">
+	<div id="nav-contain">	
+		<h2 class="on-point" ui-sref="home.news.national">NATIONAL</h2>
+		<div ng-repeat="n in national">
+			<a target="_blank" href="{{n.url}}">{{n.title}}</a> 
+			<p>{{n.byline}}</p>
+			<p>{{n.abstract}}..</p>
+			<hr>
+		</div>
 	</div>
 </div>

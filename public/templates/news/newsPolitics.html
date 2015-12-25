@@ -1,8 +1,11 @@
-<div>
-	<h2>POLITICS</h2>
-	<div ng-repeat="p in politics">
-		<a href="{{p.url}}">{{p.title}}</a> | {{p.byline}}
-		<p>{{p.abstract}}..</p>
-		<hr>
+<div class="jumbotron section-3">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.politics">POLITICS</h2>
+		<div ng-repeat="p in politics">
+			<a target="_blank" href="{{p.url}}">{{p.title}}</a>
+			<p>{{p.byline}}</p>
+			<p>{{p.abstract}}..</p>
+			<hr>
+		</div>
 	</div>
 </div>

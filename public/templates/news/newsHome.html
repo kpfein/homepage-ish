@@ -1,115 +1,122 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-5">
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.world">WORLD</h2>
-				<div ng-repeat="w in world|limitTo:5">
-					<a target="_blank" href="{{w.url}}">{{w.title}}</a>
-					<p>{{w.byline}}</p>
-					<p>{{w.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.politics">POLITICS</h2>
-				<div ng-repeat="p in politics|limitTo:5">
-					<a target="_blank" href="{{p.url}}">{{p.title}}</a>
-					<p>{{p.byline}}</p>
-					<p>{{p.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.technology">TECHNOLOGY</h2>
-				<div ng-repeat="t in technology|limitTo:5">
-					<a target="_blank" href="{{t.url}}">{{t.title}}</a>
-					<p>{{t.byline}}</p>
-					<p>{{t.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.health">HEALTH</h2>
-				<div ng-repeat="h in health|limitTo:5">
-					<a target="_blank" href="{{h.url}}">{{h.title}}</a>
-					<p>{{h.byline}}</p>
-					<p>{{h.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.fashion">FASHION</h2>
-				<div ng-repeat="f in fashion|limitTo:5">
-					<a target="_blank" href="{{f.url}}">{{f.title}}</a>
-					<p>{{f.byline}}</p>
-					<p>{{f.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-		</div>
-
-
-		<div class="col-md-offset-1 col-md-5">
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.national">NATIONAL</h2>
-				<div ng-repeat="n in national|limitTo:5">
-					<a target="_blank" href="{{n.url}}">{{n.title}}</a> 
-					<p>{{n.byline}}</p>
-					<p>{{n.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.business">BUSINESS</h2>
-				<div ng-repeat="b in business|limitTo:5">
-					<a target="_blank" href="{{b.url}}">{{b.title}}</a>
-					<p>{{b.byline}}</p>
-					<p>{{b.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.opinion">OPINION</h2>
-				<div ng-repeat="o in opinion|limitTo:5">
-					<a target="_blank" href="{{o.url}}">{{o.title}}</a>
-					<p>{{o.byline}}</p>
-					<p>{{o.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.arts">ARTS</h2>
-				<div ng-repeat="a in arts|limitTo:5">
-					<a target="_blank" href="{{a.url}}">{{a.title}}</a>
-					<p>{{a.byline}}</p>
-					<p>{{a.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
-			<div class="dashboard-section">
-				<h2 class="on-point" ui-sref="home.news.travel">TRAVEL</h2>
-				<div ng-repeat="t in travel|limitTo:5">
-					<a target="_blank" href="{{t.url}}">{{t.title}}</a>
-					<p>{{t.byline}}</p>
-					<p>{{t.abstract}}..</p>
-					<hr>
-				</div>
-			</div>
-			<br>
+<div class="jumbotron section-1">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.world">WORLD</h2>
+		<div ng-repeat="w in world|limitTo:5">
+			<a target="_blank" href="{{w.url}}">{{w.title}}</a>
+			<p>{{w.byline}}</p>
+			<p>{{w.abstract}}..</p>
+			<hr>
 		</div>
 	</div>
 </div>
 
+<div class="jumbotron section-2">
+	<div id="nav-contain">	
+		<h2 class="on-point" ui-sref="home.news.national">NATIONAL</h2>
+		<div ng-repeat="n in national|limitTo:5">
+			<a target="_blank" href="{{n.url}}">{{n.title}}</a> 
+			<p>{{n.byline}}</p>
+			<p>{{n.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
 
+<div class="jumbotron section-3">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.politics">POLITICS</h2>
+		<div ng-repeat="p in politics|limitTo:5">
+			<a target="_blank" href="{{p.url}}">{{p.title}}</a>
+			<p>{{p.byline}}</p>
+			<p>{{p.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron section-4">
+	<div id="nav-contain">	
+		<h2 class="on-point" ui-sref="home.news.business">BUSINESS</h2>
+		<div ng-repeat="b in business|limitTo:5">
+			<a target="_blank" href="{{b.url}}">{{b.title}}</a>
+			<p>{{b.byline}}</p>
+			<p>{{b.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron section-5">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.technology">TECHNOLOGY</h2>
+		<div ng-repeat="t in technology|limitTo:5">
+			<a target="_blank" href="{{t.url}}">{{t.title}}</a>
+			<p>{{t.byline}}</p>
+			<p>{{t.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron section-6">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.opinion">OPINION</h2>
+		<div ng-repeat="o in opinion|limitTo:5">
+			<a target="_blank" href="{{o.url}}">{{o.title}}</a>
+			<p>{{o.byline}}</p>
+			<p>{{o.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron section-1">
+	<div id="nav-contain">		
+		<h2 class="on-point" ui-sref="home.news.health">HEALTH</h2>
+		<div ng-repeat="h in health|limitTo:5">
+			<a target="_blank" href="{{h.url}}">{{h.title}}</a>
+			<p>{{h.byline}}</p>
+			<p>{{h.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
+	
+<div class="jumbotron section-2">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.arts">ARTS</h2>
+		<div ng-repeat="a in arts|limitTo:5">
+			<a target="_blank" href="{{a.url}}">{{a.title}}</a>
+			<p>{{a.byline}}</p>
+			<p>{{a.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron section-3">
+	<div id="nav-contain">			
+		<h2 class="on-point" ui-sref="home.news.fashion">FASHION</h2>
+		<div ng-repeat="f in fashion|limitTo:5">
+			<a target="_blank" href="{{f.url}}">{{f.title}}</a>
+			<p>{{f.byline}}</p>
+			<p>{{f.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
+
+<div class="jumbotron section-4">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.travel">TRAVEL</h2>
+		<div ng-repeat="t in travel|limitTo:5">
+			<a target="_blank" href="{{t.url}}">{{t.title}}</a>
+			<p>{{t.byline}}</p>
+			<p>{{t.abstract}}..</p>
+			<hr>
+		</div>
+	</div>
+</div>
 
 
 

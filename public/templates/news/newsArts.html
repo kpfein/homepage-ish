@@ -1,8 +1,11 @@
-<div>
-	<h2>ARTS</h2>
-	<div ng-repeat="a in arts">
-		<a href="{{a.url}}">{{a.title}}</a> | {{a.byline}}
-		<p>{{a.abstract}}..</p>
-		<hr>
+<div class="jumbotron section-2">
+	<div id="nav-contain">
+		<h2 class="on-point" ui-sref="home.news.arts">ARTS</h2>
+		<div ng-repeat="a in arts">
+			<a target="_blank" href="{{a.url}}">{{a.title}}</a>
+			<p>{{a.byline}}</p>
+			<p>{{a.abstract}}..</p>
+			<hr>
+		</div>
 	</div>
 </div>

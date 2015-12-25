@@ -1,22 +1,103 @@
-.main-contain{
-	padding: 0 10 0 10;
-}
+/*login*/
 
-.nav-container {
-	padding-top: 15px;
-	background-color: #337ab7;
+.login-contain {
+	background-color: #57767D;
 	width: 100%;
-	height: 75px;
+	height: 900px;
+	padding-top: 12%;
 }
 
-.nav {
-	padding-left: 15px;
+.button-container {
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
 }
 
-.dashboard-section {
-	box-sizing: border-box;
-	border: 1px solid black;
-	padding: 0px 15px 15px 15px;
+.buttonz {
+	color: white;
+	background-color: #475072;
+	border: 2px solid #AA9988;
+	border-radius: 0px;
+	width: 250px;
+}
+.buttonz:hover {
+	background-color: #303855;
+	color: white;
+	border: 2px solid #2B2B2B;
+	border-radius: 0px;
+}
+
+/*nav bar*/
+#nav-container {
+	background-color: #475072;
+	margin: 0 auto;
+}
+#nav-contain {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.nav-buttonz {
+	color: white;
+	background-color: #475072;
+	border-left: 1px solid #AA9988;
+	border-right: 1px solid #AA9988;
+	border-radius: 0px;
+	width: 140px;
+}
+.nav-buttonz:hover {
+	background-color: #303855;
+	color: white;
+	border-radius: 0px;
+}
+.news-buttonz, #task-button {
+	color: white;
+	background-color: #475072;
+	border-left: 1px solid #AA9988;
+	border-right: 1px solid #AA9988;
+	border-radius: 0px;
+}
+.news-buttonz:hover, #task-button:hover {
+	background-color: #303855;
+	color: white;
+	border-radius: 0px;
+}
+#task-button {
+	border: none;
+}
+
+
+.main-heading, .section-1, .section-2, .section-3, .section-4, .section-5, .section-6 {
+	background-color: #1D274B;
+	color: white;
+	margin-bottom: 0px;
+}
+.main-contain{
+	padding-top: 10px;
+	background-color: #F2F2F2;
+}
+
+.section-1 {
+	background-color: #A88461;/*brown*/
+}
+.section-2 {
+	background-color: #2F5E3C;/*green*/
+}
+.section-3 {
+	background-color: #3D6068;/*blue*/
+}
+.section-4 {
+	background-color: #7E5E3F;/*brown*/
+}
+.section-5 {
+	background-color: #487E56;/*green*/
+}
+.section-6 {
+	background-color: #28474E;/*blue*/
+}
+
+.abc {
+	padding: 0;
 }
 
 .on-point {
@@ -46,5 +127,22 @@ display: block;
 }
 
 #twitter-form {
+	clear: both;
+}
+
+
+/*home-page weather*/
+
+.current {
+	float: left;
+	position: relative
+}
+
+#current-child {
+	position: absolute;
+	right: 30px;
+}
+
+#week-data {
 	clear: both;
 }

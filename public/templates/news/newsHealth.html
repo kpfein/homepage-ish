@@ -1,8 +1,11 @@
-<div>
-	<h2>HEALTH</h2>
-	<div ng-repeat="h in health">
-		<a href="{{h.url}}">{{h.title}}</a> | {{h.byline}}
-		<p>{{h.abstract}}..</p>
-		<hr>
+<div class="jumbotron section-1">
+	<div id="nav-contain">		
+		<h2 class="on-point" ui-sref="home.news.health">HEALTH</h2>
+		<div ng-repeat="h in health">
+			<a target="_blank" href="{{h.url}}">{{h.title}}</a>
+			<p>{{h.byline}}</p>
+			<p>{{h.abstract}}..</p>
+			<hr>
+		</div>
 	</div>
 </div>

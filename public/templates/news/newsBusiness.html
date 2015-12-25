@@ -1,8 +1,11 @@
-<div>
-	<h2>BUSINESS</h2>
-	<div ng-repeat="b in business">
-		<a href="{{b.url}}">{{b.title}}</a> | {{b.byline}}
-		<p>{{b.abstract}}..</p>
-		<hr>
+<div class="jumbotron section-4">
+	<div id="nav-contain">	
+		<h2 class="on-point" ui-sref="home.news.business">BUSINESS</h2>
+		<div ng-repeat="b in business">
+			<a target="_blank" href="{{b.url}}">{{b.title}}</a>
+			<p>{{b.byline}}</p>
+			<p>{{b.abstract}}..</p>
+			<hr>
+		</div>
 	</div>
 </div>
