@@ -28,6 +28,8 @@ angular.module("homepage").service("socialService", function($q, $http){
 		return deferred.promise;
 	}
 
+
+
 // FACEBOOK ////////////////////////////////////////////////////
 
 	// this.postStatus = function(status, currentUser){

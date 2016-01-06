@@ -29,4 +29,6 @@ angular.module("homepage").service("weatherService", function($http, $q){
 		}
 	};
 
+
+
 });

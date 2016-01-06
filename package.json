@@ -24,6 +24,7 @@
     "passport-tumblr": "^0.1.2",
     "passport-twitter": "^1.0.3",
     "q": "^1.4.1",
+    "tumblr.js": "0.0.7",
     "twitter": "^1.2.5"
   }
 }

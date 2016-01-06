@@ -218,10 +218,6 @@ angular.module("homepage", ["ui.router", "angular-skycons", "720kb.datepicker"])
 			url: "/hourly",
 			templateUrl: "templates/weather/weatherHourly.html",
 		})
-		.state("home.weather.lookup", {
-			url: "/lookup",
-			templateUrl: "templates/weather/weatherLookup.html",
-		})
 
 
 

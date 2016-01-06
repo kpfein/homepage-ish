@@ -14,23 +14,26 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 	s.sports = Sports;
 	s.w = Weather;
 	s.currentUser = currentUser;
+	console.log(s.w)
 
 /////// TWITTER ///////////////////////////////////////////////////////////
-	
-	s.postTweet = function(){
+	s.postTweet = function(tweet, currentUser){
 		socialService.postTweet(s.tweet, s.currentUser).then(function(){
-			$scope.tweet = '';
-			console.log("tweet tweeted")
 		});
+			s.tweet.status = '';
+			console.log("tweet tweeted")
 	};
 
 	s.getTimeline = function(currentUser){
 		socialService.getTimeline(s.currentUser).then(function(results){
 			s.timeline = results;
 			console.log(s.timeline);
-		})
+		})	
 	}
 	s.getTimeline(s.currentUser)
+
+
+
 
 /////// FACEBOOK ///////////////////////////////////////////////////////////
 
@@ -43,7 +46,7 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 
 
 
-/////// WEATHER DATA CONVERSION FUNCTIONS /////////////////////////////////
+/////// WEATHER  /////////////////////////////////
 	s.temp = function(temp){return Math.round(temp);}
 	s.convertDate = function(dt){return new Date(dt * 1000);}
 	s.round = function(x){return Math.round(x);}
@@ -95,8 +98,9 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 	s.getActiveTasks = function(currentUser){
 		todoService.getActiveTasks(s.currentUser).then(function(results){
 			s.actives = results;
-			console.log(s.actives);
+			// console.log(s.actives);
 		});
+
 	};
 	s.getActiveTasks(s.currentUser);
 
@@ -113,8 +117,5 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 			console.log("progress updated");
 		});
 	};
-
-
-
 
 });

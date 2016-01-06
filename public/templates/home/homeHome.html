@@ -1,17 +1,36 @@
 <div class="row">
 	<div class="col-md-6 abc">
-		<div class="jumbotron section-3">
+		<div class="jumbotron section-twitter">
 			<div id="nav-contain">
-				<h2>SOCIAL MEDIA</h2>
-				<hr>
-				<h3 class="on-point" href="http://www.twitter.com">TWITTER</h3>
-				<form id="twitter-form">
-					<input ng-model="tweet.status" placeholder="Tweet here...">
-					<button type="submit" class="btn btn-primary btn-sm" ng-click="postTweet(tweet)">Tweet</button>
-				</form>	
+				<h2 class="on-point" href="http://www.twitter.com">TWITTER</h2>
+				<div class="well">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div class="col-md-5" id="tweet-content">
+								<input class="form-control tweet-compose" ng-model="tweet.status" placeholder="Tweet here...">
+							</div>
+						</div>
+						<div id="tweet-controls">
+							<!-- <div id="char-count">140</div> -->
+							<button type="submit" class="btn btn-sm btn-twit" id="tweet-submit" ng-click="postTweet(tweet)">Tweet</button>
+						</div>
+					</form> 
+				</div>
 				<br>
-				<div ng-repeat="t in timeline track by $index">
-					<p>{{t.text}}</p>
+				<div class="well twit-well" ng-repeat="t in timeline track by $index">
+					<div class="row">
+						<div class="twit-avatar col-md-1">
+							<img src="{{t.user.profile_image_url}}">
+						</div>
+						<div class="twit-name-contain col-md-8"
+							<h4>{{t.user.name}}</h4>
+							<h5>@{{t.user.screen_name}}</h5>
+						</div>
+					</div>
+					<div class="tweet-content on-point">
+						<a target="_blank" href="{{t.entities.urls[0].url}}">{{t.text}}</a>
+						<!-- <p>{{t.created_at | date: "h:mm a - d MMM yyyy"}}</p> -->
+					</div>
 				</div>
 			</div>
 		</div>
@@ -19,7 +38,6 @@
 
 	
 	<div class="col-md-6 abc">
-
 		<div class="jumbotron section-6">
 			<div id="nav-contain">
 				<form class="form-inline">
@@ -28,8 +46,7 @@
 					</div>
 					<button type="button" class="btn news-buttonz btn-xs" id="task-button" ui-sref="home.todo.add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 				</form>
-				<hr>
-				<div ng-repeat="a in actives">
+				<div class="well" ng-repeat="a in actives">
 					<form class="form-inline">
 						<div class="form-group">
 							<h2>{{a.title}} </h2>
@@ -41,9 +58,9 @@
 							<button class="btn news-buttonz btn-sm" data-toggle="tooltip" title="Mark Completed" ng-click="completeTask(a._id)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
 						</div>
 					</form>
-					<h5>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</h5>
-					<h5>Due Date: {{a.due | date: "EEEE, MMMM d"}}</h5>
-					<h5>{{a.details}}</h5>
+					<h4>Details: {{a.details}}</h4>
+					<h6>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</h6>
+					<h6>Due Date: {{a.due | date: "EEEE, MMMM d"}}</h6>
 
 					<div ng-show="updateProgress">
 						<br>
@@ -55,9 +72,11 @@
 							<button class="btn news-buttonz" type="submit" ng-click="updateTaskProgress(a._id, thisTask)">Submit</button>
 						</form>
 					</div>
+					<h4 ng-if="a.progress[0].message">Updates:</h4>
 					<div ng-repeat="p in a.progress">
 						<hr>
-						<h5>{{p.message}}</h5>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
+						<h5>{{p.message}}</h5>
+						<h6>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}</h6>
 					</div>
 					<hr>
 				</div>
@@ -68,15 +87,16 @@
 		<div class="jumbotron section-2">
 			<div id="nav-contain">
 				<h2 class="on-point" ui-sref="home.news.all">NEWS</h2>
-				<hr>	
-				<div ng-repeat="w in world|limitTo:2">
-					<a target="_blank" href="{{w.url}}">{{w.title}}</a>
-				</div>
-				<div ng-repeat="n in national|limitTo:2">
-					<a target="_blank" href="{{n.url}}">{{n.title}}</a>
-				</div>
-				<div ng-repeat="p in politics|limitTo:2">
-					<a target="_blank" href="{{p.url}}">{{p.title}}</a>
+				<div class="well">
+					<div ng-repeat="w in world|limitTo:2">
+						<a target="_blank" href="{{w.url}}"><h4>{{w.title}}</h4></a>
+					</div>
+					<div ng-repeat="n in national|limitTo:2">
+						<a target="_blank" href="{{n.url}}"><h4>{{n.title}}</h4></a>
+					</div>
+					<div ng-repeat="p in politics|limitTo:2">
+						<a target="_blank" href="{{p.url}}"><h4>{{p.title}}</h4></a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -84,31 +104,55 @@
 
 		<div class="jumbotron section-4">
 			<div id="nav-contain">
-				<h2 class="on-point" ui-sref="home.weather.current">WEATHER <button ng-show="w.alerts" class="btn btn-danger btn-sm" ng-click="showAlert = !showAlert" ><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></button></h2>
+
+				<form class="form-inline">
+					<div class="form-group">
+						<h2 class="on-point" ui-sref="home.weather.current">WEATHER </h2>
+					</div>
+					<button ng-show="w.alerts" class="btn btn-danger btn-sm" ng-click="showAlert = !showAlert" ><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></button>
+				</form>
 				<hr>
-				
-				<div class="current"><skycon icon="w.currently.icon"></skycon></div>
-				<div class="current">
-					<div>{{w.currently.summary}}</div>
-					<div> {{round(w.currently.temperature)}}°F</div>
-					<div>Feels Like: {{round(w.currently.apparentTemperature)}}°F</div>
-					<div>Hi: {{round(w.daily.data[0].temperatureMax)}}°F | Lo: {{round(w.daily.data[0].temperatureMin)}}°F</div>
+				<div ng-show="showAlert" ng-repeat="alert in w.alerts">
+					<h3>{{alert.title}}</h3>
+					<h4>{{alert.description}}</h4>
+					<hr>
 				</div>
-				<div id="current">
-					<div id="current-child">
-						<div>Dew Point: {{round(w.currently.dewPoint)}}° | Humidity: {{percentage(w.currently.humidity)}}%</div>
-						<div>Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
-						<div>Wind: {{round(w.currently.windSpeed)}} mph | {{direction(w.currently.windBearing)}}</div>
-						<div>Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
+				<h3 class="on-point" ui-sref="home.weather.current">CURRENT</h3>
+				<div class="well">
+					<div class="row">
+						<div class="col-md-4">
+							<div id="current-icon"><skycon icon="w.currently.icon"></skycon></div>
+							<h3 id="current-sum">{{w.currently.summary}}</h3>
+						</div>
+						<div class="col-md-4">
+							<h3 id="current-temp">{{round(w.currently.temperature)}}°F</h3>
+							<h3 id="current-temp">{{celsius(w.currently.temperature)}}°C</h3>
+						</div>
+						<div class="col-md-4">
+							<h5>Feels Like: {{round(w.currently.apparentTemperature)}}°F / {{celsius(w.currently.apparentTemperature)}}°C</h5>
+							<h5>Hi: {{round(w.daily.data[0].temperatureMax)}}°F / {{celsius(w.daily.data[0].temperatureMax)}}°C</h5>
+							<h5>Lo: {{round(w.daily.data[0].temperatureMin)}}°F / {{celsius(w.daily.data[0].temperatureMin)}}°C</h5>
+							<h5>Precipitation: {{percentage(w.currently.precipProbability)}}%</h5>
+							<h5>Wind: {{direction(w.currently.windBearing)}} @ {{round(w.currently.windSpeed)}} mph</h5>
+						</div>
 					</div>
 				</div>
-				<div class="well well-sm" ng-show="!toggleUnits" ng-repeat="w in w.daily.data" ng-click="isCollapsed = !isCollapsed">
-					<div class="day-date">{{convertDate(w.time) | date: "EEEE"}}</div>
-					<hr>
-					<div class="current"><skycon icon="w.icon"></skycon></div>
-					<hr>
-					<div class="day-hi-lo">Hi: {{round(w.temperatureMax)}}°F | Lo: {{round(w.temperatureMin)}}°F</div>
-					<div class="day-precip">Precip: {{percentage(w.precipProbability)}}%</div>				
+				<h3 class="on-point" ui-sref="home.weather.seven">7 DAY FORECAST</h3>
+				<div class="well" ng-repeat="w in w.daily.data" ng-hide="$first">
+					<div class="row">
+						<div class="col-md-4">
+							<h3 id="daily-day">{{convertDate(w.time) | date: "EEEE"}}</h3>
+						</div>
+						<div class="col-md-4 daily-icon-contain">
+							<div id="daily-icon"><skycon icon="w.icon"></skycon></div>
+						</div>
+						<div class="col-md-4">
+							<h5>Hi: {{round(w.temperatureMax)}}°F / {{celsius(w.temperatureMax)}}°C</h5>
+							<h5>Lo: {{round(w.temperatureMin)}}°F / {{celsius(w.temperatureMin)}}°C</h5>
+							<h5>Precipitation: {{percentage(w.precipProbability)}}%</h5>
+							<h5>Wind: {{direction(w.windBearing)}} @ {{round(w.windSpeed)}} mph</h5>			
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -117,17 +161,12 @@
 		<div class="jumbotron section-5">
 			<div id="nav-contain">
 				<h2 class="on-point" ui-sref="home.sports">SPORTS</h2>
-				<hr>
-				<div ng-repeat="s in sports|limitTo:6">
-					<a target="_blank" href="{{s.url}}">{{s.title}}</a>
+				<div class="well">
+					<div ng-repeat="s in sports|limitTo:6">
+						<a target="_blank" href="{{s.url}}"><h4>{{s.title}}</h4></a>
+					</div>
 				</div>
 			</div>
 		</div>
-
-
-
-
 	</div>
-
-
 </div>
