@@ -6,10 +6,34 @@
 
 <div class="jumbotron section-6">
 	<div id="nav-contain">
-		<div ng-repeat="s in sports">
-			<a href="{{s.url}}">{{s.title}}</a> | {{s.byline}}
-			<p>{{s.abstract}}..</p>
-			<hr>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="s in sports|limitTo:Math.ceil(sports.length/3)">
+					<a target="_blank" href="{{s.url}}"><h2>{{s.title}}</h2></a>
+					<h5>{{s.byline}}</h5>
+					<div ng-if="s.multimedia[4].url"><img style="width:100%" src="{{s.multimedia[4].url}}"></div>
+					<h6 ng-if="s.multimedia[4].caption" class="task-date">{{s.multimedia[4].caption}} | &copy {{s.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{s.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="s in sports|limitTo:Math.ceil(sports.length/3):Math.ceil(sports.length/3)" >
+					<a target="_blank" href="{{s.url}}"><h2>{{s.title}}</h2></a>
+					<h5>{{s.byline}}</h5>
+					<div ng-if="s.multimedia[4].url"><img style="width:100%" src="{{s.multimedia[4].url}}"></div>
+					<h6 ng-if="s.multimedia[4].caption" class="task-date">{{s.multimedia[4].caption}} | &copy {{s.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{s.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="s in sports|limitTo:Math.ceil(sports.length/3):Math.ceil(sports.length/3)*2">
+					<a target="_blank" href="{{s.url}}"><h2>{{s.title}}</h2></a>
+					<h5>{{s.byline}}</h5>
+					<div ng-if="s.multimedia[4].url"><img style="width:100%" src="{{s.multimedia[4].url}}"></div>
+					<h6 ng-if="s.multimedia[4].caption" class="task-date">{{s.multimedia[4].caption}} | &copy {{s.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{s.abstract}}..</h4>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

@@ -3,40 +3,10 @@
 		<h2>ACTIVE TASKS</h2>
 	</div>
 </div>
-
-<div class="jumbotron section-3">
-	<div id="nav-contain">
-		<div ng-repeat="a in actives">
-			<form class="form-inline">
-				<div class="form-group">
-					<h2>{{a.title}} </h2>
-				</div>
-				<button type="button" ng-click="showTaskButtons = !showTaskButtons" class="btn news-buttonz btn-xs" id="task-button" data-toggle="tooltip" title="Task Controls"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></button>
-				<div class="btn-group" ng-show="showTaskButtons">
-					<button class="btn news-buttonz btn-sm" data-toggle="tooltip" title="Edit Task" ui-sref="home.todo.edit({id: a._id})"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
-					<button class="btn news-buttonz btn-sm" data-toggle="tooltip" title="Update Progress" ng-click="updateProgress = !updateProgress"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-					<button class="btn news-buttonz btn-sm" data-toggle="tooltip" title="Mark Completed" ng-click="completeTask(a._id)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-				</div>
-			</form>
-			<p>Created: {{a.createdAt | date: "EEEE, MMMM d, y h:mm:ss a"}}</p>
-			<p>Due Date: {{a.due | date: "EEEE, MMMM d"}}</p>
-			<p>{{a.details}}</p>
-
-			<div ng-show="updateProgress">
-				<br>
-				<form class="form-inline">
-					<div class="form-group">
-						<label for="task-update" class="control-label">Progress Update</label>
-						<input ng-model="thisTask.progress.message" type="text" id="task-update" class="form-control" style="width: 300px" placeholder="update on task progress">
-					</div>
-					<button class="btn news-buttonz" type="submit" ng-click="updateTaskProgress(a._id, thisTask)">Submit</button>
-				</form>
-			</div>
-			<div ng-repeat="p in a.progress">
-				<hr>
-				<p>{{p.message}}</p>{{p.updated | date: "EEEE, MMMM d, y h:mm:ss a"}}
-			</div>
-			<hr>
+<div class="mainer-contain">
+	<div class="jumbotron section-3">
+		<div id="nav-contain">
+			<active-tasks></active-tasks>
 		</div>
 	</div>
 </div>

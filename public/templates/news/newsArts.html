@@ -1,11 +1,35 @@
+<div class="jumbotron section-1">
+	<div id="nav-contain">
+		<h2>ARTS</h2>
+	</div>
+</div>
 <div class="jumbotron section-2">
 	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.arts">ARTS</h2>
-		<div ng-repeat="a in arts">
-			<a target="_blank" href="{{a.url}}">{{a.title}}</a>
-			<p>{{a.byline}}</p>
-			<p>{{a.abstract}}..</p>
-			<hr>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="a in arts|limitTo:Math.ceil(arts.length/3)">
+					<a target="_blank" href="{{a.url}}"><h2>{{a.title}}</h2></a>
+					<h5>{{a.byline}}</h5>
+					<div><img style="width:100%" src="{{a.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{a.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="a in arts|limitTo:Math.ceil(arts.length/3):Math.ceil(arts.length/3)" >
+					<a target="_blank" href="{{a.url}}"><h2>{{a.title}}</h2></a>
+					<h5>{{a.byline}}</h5>
+					<div><img style="width:100%" src="{{a.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{a.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="a in arts|limitTo:Math.ceil(arts.length/3):Math.ceil(arts.length/3)*2">
+					<a target="_blank" href="{{a.url}}"><h2>{{a.title}}</h2></a>
+					<h5>{{a.byline}}</h5>
+					<div><img style="width:100%" src="{{a.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{a.abstract}}..</h4>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

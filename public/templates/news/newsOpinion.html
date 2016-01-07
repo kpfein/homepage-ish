@@ -1,11 +1,35 @@
+<div class="jumbotron section-1">
+	<div id="nav-contain">
+		<h2>OPINION</h2>
+	</div>
+</div>
 <div class="jumbotron section-6">
 	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.opinion">OPINION</h2>
-		<div ng-repeat="o in opinion">
-			<a target="_blank" href="{{o.url}}">{{o.title}}</a>
-			<p>{{o.byline}}</p>
-			<p>{{o.abstract}}..</p>
-			<hr>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="o in opinion|limitTo:Math.ceil(opinion.length/3)">
+					<a target="_blank" href="{{o.url}}"><h2>{{o.title}}</h2></a>
+					<h5>{{o.byline}}</h5>
+					<div><img style="width:100%" src="{{o.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{o.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="o in opinion|limitTo:Math.ceil(opinion.length/3):Math.ceil(opinion.length/3)" >
+					<a target="_blank" href="{{o.url}}"><h2>{{o.title}}</h2></a>
+					<h5>{{o.byline}}</h5>
+					<div><img style="width:100%" src="{{o.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{o.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="o in opinion|limitTo:Math.ceil(opinion.length/3):Math.ceil(opinion.length/3)*2">
+					<a target="_blank" href="{{o.url}}"><h2>{{o.title}}</h2></a>
+					<h5>{{o.byline}}</h5>
+					<div><img style="width:100%" src="{{o.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{o.abstract}}..</h4>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

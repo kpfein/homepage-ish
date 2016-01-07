@@ -1,11 +1,35 @@
+<div class="jumbotron section-1">
+	<div id="nav-contain">
+		<h2>POLITICS</h2>
+	</div>
+</div>
 <div class="jumbotron section-3">
 	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.politics">POLITICS</h2>
-		<div ng-repeat="p in politics">
-			<a target="_blank" href="{{p.url}}">{{p.title}}</a>
-			<p>{{p.byline}}</p>
-			<p>{{p.abstract}}..</p>
-			<hr>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="p in politics|limitTo:Math.ceil(politics.length/3)">
+					<a target="_blank" href="{{p.url}}"><h2>{{p.title}}</h2></a>
+					<h5>{{p.byline}}</h5>
+					<div><img style="width:100%" src="{{p.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{p.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="p in politics|limitTo:Math.ceil(politics.length/3):Math.ceil(politics.length/3)" >
+					<a target="_blank" href="{{p.url}}"><h2>{{p.title}}</h2></a>
+					<h5>{{p.byline}}</h5>
+					<div><img style="width:100%" src="{{p.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{p.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="p in politics|limitTo:Math.ceil(politics.length/3):Math.ceil(politics.length/3)*2">
+					<a target="_blank" href="{{p.url}}"><h2>{{p.title}}</h2></a>
+					<h5>{{p.byline}}</h5>
+					<div><img style="width:100%" src="{{p.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{p.abstract}}..</h4>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

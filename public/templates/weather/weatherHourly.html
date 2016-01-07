@@ -1,12 +1,64 @@
-<div>
-	<div id="summary">{{w.hourly.summary}}</div>
-
-	<div class="well well-sm hour-contain">
-		<div class="hourly-text">TIME</div>
-		<div class="hourly-text">COND</div>
-		<div class="hourly-text">TEMP</div>
-		<div class="hourly-text">PRECIP</div>
+<div class="jumbotron section-1">
+	<div id="nav-contain">
+		<h2>HOURLY FORECAST</h2>
 	</div>
+</div>
+
+<div class="mainer-contain">
+	<div class="jumbotron section-4">
+		<div id="nav-contain">
+			<div ng-show="showAlert" ng-repeat="alert in w.alerts">
+				<h3>{{alert.title}}</h3>
+				<h4>{{alert.description}}</h4>
+			</div>
+			<h2>{{w.hourly.summary}}</h2>
+			<div class="well">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-2">
+						<h3>TIME</h3>
+					</div>
+					<div class="col-md-offset-1 col-md-2">
+						<h3>COND</h3>
+					</div>
+					<div class="col-md-offset-1 col-md-2">
+						<h3>TEMP</h3>
+					</div>
+					<div class="col-md-offset-1 col-md-2">
+						<h3>PRECIP</h3>
+					</div>
+				</div>
+			</div>
+			<div class="well twit-well" ng-repeat="w in w.hourly.data" ng-hide="$first">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-2">
+						<h3 id="daily-day">{{convertDate(w.time) | date: "h a"}}</h3>
+					</div>
+					<div class="col-md-offset-1 col-md-2 daily-icon-contain">
+						<div id="daily-icon"><skycon icon="w.icon"></skycon></div>
+					</div>
+					<div class="col-md-offset-1 col-md-2">
+						<h3>{{round(w.temperature)}}°F</h3>
+						<h3>{{celsius(w.temperature)}}°C</h3>
+					</div>
+					<div class="col-md-offset-1 col-md-2">
+						<h3>{{percentage(w.precipProbability)}}%</h3>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
 
 	<div class="well well-sm hour-contain" ng-repeat="w in w.hourly.data" ng-show="!toggleUnits">
 		<div class="hourly-text">{{convertDate(w.time) | date: "h a"}}</div>

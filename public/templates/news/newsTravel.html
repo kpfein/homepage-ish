@@ -1,11 +1,35 @@
+<div class="jumbotron section-1">
+	<div id="nav-contain">
+		<h2>TRAVEL</h2>
+	</div>
+</div>
 <div class="jumbotron section-4">
 	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.travel">TRAVEL</h2>
-		<div ng-repeat="t in travel">
-			<a target="_blank" href="{{t.url}}">{{t.title}}</a>
-			<p>{{t.byline}}</p>
-			<p>{{t.abstract}}..</p>
-			<hr>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="t in travel|limitTo:Math.ceil(travel.length/3)">
+					<a target="_blank" href="{{t.url}}"><h2>{{t.title}}</h2></a>
+					<h5>{{t.byline}}</h5>
+					<div><img style="width:100%" src="{{t.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{t.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="t in travel|limitTo:Math.ceil(travel.length/3):Math.ceil(travel.length/3)" >
+					<a target="_blank" href="{{t.url}}"><h2>{{t.title}}</h2></a>
+					<h5>{{t.byline}}</h5>
+					<div><img style="width:100%" src="{{t.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{t.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="t in travel|limitTo:Math.ceil(travel.length/3):Math.ceil(travel.length/3)*2">
+					<a target="_blank" href="{{t.url}}"><h2>{{t.title}}</h2></a>
+					<h5>{{t.byline}}</h5>
+					<div><img style="width:100%" src="{{t.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{t.abstract}}..</h4>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

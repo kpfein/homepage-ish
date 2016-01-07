@@ -1,34 +1,39 @@
-<div class="jumbotron section-2">
+<div class="jumbotron section-1">
 	<div id="nav-contain">
-
-
-
-		<div ng-show="!toggleUnits">
-			<div class="current"><skycon icon="w.currently.icon"></skycon></div>
-			<div class="current" id="current-temp">{{round(w.currently.temperature)}}°F</div>
-			<div class="current current-text">{{w.currently.summary}}</div>
-			<div class="current current-text">Feels Like: {{round(w.currently.apparentTemperature)}}°F</div>
-			<div class="current current-text">Hi: {{round(w.daily.data[0].temperatureMax)}}°F | Lo: {{round(w.daily.data[0].temperatureMin)}}°F</div>
-			<div class="current current-text">Dew Point: {{round(w.currently.dewPoint)}}°</div>
-			<div class="current current-text">Humidity: {{percentage(w.currently.humidity)}}%</div>
-			<div class="current current-text">Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
-			<div class="current current-text">Wind: {{round(w.currently.windSpeed)}} mph | {{direction(w.currently.windBearing)}}</div>
-			<div class="current current-text">Visibility: {{w.currently.visibility}} mi</div>
-			<div class="current current-text">Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
-		</div>
-
-		<div ng-show="toggleUnits">
-			<div class="current"><skycon width="100px" icon="w.currently.icon"></skycon></div>
-			<div class="current" id="current-temp">{{celsius(w.currently.temperature)}}°C</div>
-			<div class="current current-text">{{w.currently.summary}}</div>
-			<div class="current current-text">Feels Like: {{celsius(w.currently.apparentTemperature)}}°C</div>
-			<div class="current current-text">Hi: {{celsius(w.daily.data[0].temperatureMax)}}°C | Lo: {{celsius(w.daily.data[0].temperatureMin)}}°C</div>
-			<div class="current current-text">Dew Point: {{celsius(w.currently.dewPoint)}}°</div>
-			<div class="current current-text">Humidity: {{percentage(w.currently.humidity)}}%</div>
-			<div class="current current-text">Precipitation: {{percentage(w.currently.precipProbability)}}%</div>
-			<div class="current current-text">Wind: {{kph(w.currently.windSpeed)}} kph | {{direction(w.currently.windBearing)}}</div>
-			<div class="current current-text">Visibility: {{kilo(w.currently.visibility)}} km</div>
-			<div class="current current-text">Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}} | Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</div>
+		<h2>CURRENT WEATHER</h2>
+	</div>
+</div>
+</div><div class="mainer-contain">
+	<div class="jumbotron section-2">
+		<div id="nav-contain">
+			<div ng-show="showAlert" ng-repeat="alert in w.alerts">
+				<h3>{{alert.title}}</h3>
+				<h4>{{alert.description}}</h4>
+			</div>
+			<div class="well">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-3">
+						<h3 id="current-temp">{{round(w.currently.temperature)}}°F</h3>
+						<h3 id="current-temp">{{celsius(w.currently.temperature)}}°C</h3>
+						<div><skycon icon="w.currently.icon"></skycon></div>
+						<h3>{{w.currently.summary}}</h3>
+					</div>
+					<div class="col-md-offset-1 col-md-3">
+						<h3>Feels Like: {{round(w.currently.apparentTemperature)}}°F / {{celsius(w.currently.apparentTemperature)}}°C</h3>
+						<h3>Hi: {{round(w.daily.data[0].temperatureMax)}}°F / {{celsius(w.daily.data[0].temperatureMax)}}°C</h3>
+						<h3>Lo: {{round(w.daily.data[0].temperatureMin)}}°F / {{celsius(w.daily.data[0].temperatureMin)}}°C</h3>
+						<h3>Dew Point: {{round(w.currently.dewPoint)}}°</h3>
+						<h3>Humidity: {{percentage(w.currently.humidity)}}%</h3>
+					</div>
+					<div class="col-md-offset-1 col-md-3">
+						<h3>Precipitation: {{percentage(w.currently.precipProbability)}}%</h3>
+						<h3>Wind: {{direction(w.currently.windBearing)}} @ {{round(w.currently.windSpeed)}} mph</h3>
+						<h3>Visibility: {{w.currently.visibility}} mi</h3>
+						<h3>Sunrise: {{convertDate(w.daily.data[0].sunriseTime) | date: "shortTime"}}</h3>
+						<h3>Sunset: {{convertDate(w.daily.data[0].sunsetTime) | date: "shortTime"}}</h3>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

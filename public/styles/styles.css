@@ -1,10 +1,19 @@
+* {
+	font-family: "Gotham Narrow", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
 /*login*/
 
-.login-contain {
+.mainer-container, .mainer-contain {
 	background-color: #57767D;
+	background-size: cover;
 	width: 100%;
-	height: 900px;
-	padding-top: 12%;
+	height: 100%;
+	padding-top: 25%;
+	padding-bottom: 25%;
+}
+.mainer-contain {
+	padding-top: 0%;
 }
 
 .button-container {
@@ -50,7 +59,7 @@
 	color: white;
 	border-radius: 0px;
 }
-.news-buttonz, #task-button {
+.news-buttonz, #task-button, .due-tomorrow, .past-due, .due-today, .due-date {
 	color: white;
 	background-color: #475072;
 	border-left: 1px solid #AA9988;
@@ -64,6 +73,29 @@
 }
 #task-button {
 	border: none;
+}
+.due-tomorrow, .due-tomorrow:hover {
+	background-color: #e8dd0d;
+	cursor: default;
+}
+.due-today, .due-today:hover {
+	background-color: #f99e16;
+	cursor: default;
+}
+.past-due, .past-due:hover {
+	background-color: #bf0707;
+	cursor: default;
+}
+.due-date, .due-date:hover {
+	background-color: #475072;
+	cursor: default;
+}
+.task-date {
+	color: #777;
+	font-style: italic;
+}
+.task-heading {
+	border-bottom: 1px solid #AA9988;
 }
 
 
@@ -120,9 +152,27 @@ display: block;
 
 /*twitter stuff*/
 
+#tweet-compose-well {
+	padding-bottom: 40px;
+}
+.tweet-compose {
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+.btn-twit {
+	color: white;
+	float: right;
+	margin-left: 10px;
+}
+#char-count {
+	float: right;
+	margin-top: 5px;
+}
+.twit-well {
+	margin-bottom: 8px;
+}
 #twit {
 	color: black;
-
 }
 #twit:hover {
 	color: black;
@@ -133,9 +183,8 @@ display: block;
 	float: left;
 }
 
-#twitter-logo {
-	float: right;
-	padding-top: 10px;
+.twitter-logo {
+	padding-left: 0px;
 }
 
 #twitter-form {
@@ -145,12 +194,25 @@ display: block;
 .twit-avatar {
 	float: left;
 }
+#twit-username {
+	margin-top: 5px;
+}
 
 .twit-name-contain {
 	float: left;
 }
 .tweet-content {
 	clear: both;
+}
+.warning {
+	color: red;
+}
+.no-decoration, .no-decoration:hover {
+	text-decoration: none !important;
+	color: black;
+}
+.twit-title, .twit-title:hover {
+	color: white;
 }
 
 
@@ -186,4 +248,12 @@ display: block;
 	height: 50px;
   	line-height: 50px;
   	white-space: nowrap;
+}
+
+/*news and sports*/
+.abstract {
+	color: #777;
+}
+.news-well {
+	margin-bottom: 2px;
 }

@@ -1,11 +1,35 @@
 <div class="jumbotron section-1">
-	<div id="nav-contain">		
-		<h2 class="on-point" ui-sref="home.news.health">HEALTH</h2>
-		<div ng-repeat="h in health">
-			<a target="_blank" href="{{h.url}}">{{h.title}}</a>
-			<p>{{h.byline}}</p>
-			<p>{{h.abstract}}..</p>
-			<hr>
+	<div id="nav-contain">
+		<h2>HEALTH</h2>
+	</div>
+</div>
+<div class="jumbotron section-6">
+	<div id="nav-contain">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="h in health|limitTo:Math.ceil(health.length/3)">
+					<a target="_blank" href="{{h.url}}"><h2>{{h.title}}</h2></a>
+					<h5>{{h.byline}}</h5>
+					<div><img style="width:100%" src="{{h.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{h.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="h in health|limitTo:Math.ceil(health.length/3):Math.ceil(health.length/3)" >
+					<a target="_blank" href="{{h.url}}"><h2>{{h.title}}</h2></a>
+					<h5>{{h.byline}}</h5>
+					<div><img style="width:100%" src="{{h.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{h.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="h in health|limitTo:Math.ceil(health.length/3):Math.ceil(health.length/3)*2">
+					<a target="_blank" href="{{h.url}}"><h2>{{h.title}}</h2></a>
+					<h5>{{h.byline}}</h5>
+					<div><img style="width:100%" src="{{h.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{h.abstract}}..</h4>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

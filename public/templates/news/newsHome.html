@@ -1,123 +1,109 @@
 <div class="jumbotron section-1">
 	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.world">WORLD</h2>
-		<div ng-repeat="w in world|limitTo:5">
-			<a target="_blank" href="{{w.url}}">{{w.title}}</a>
-			<p>{{w.byline}}</p>
-			<p>{{w.abstract}}..</p>
-			<hr>
-		</div>
+		<h2>ALL</h2>
 	</div>
 </div>
-
-<div class="jumbotron section-2">
-	<div id="nav-contain">	
-		<h2 class="on-point" ui-sref="home.news.national">NATIONAL</h2>
-		<div ng-repeat="n in national|limitTo:5">
-			<a target="_blank" href="{{n.url}}">{{n.title}}</a> 
-			<p>{{n.byline}}</p>
-			<p>{{n.abstract}}..</p>
-			<hr>
-		</div>
-	</div>
-</div>
-
-<div class="jumbotron section-3">
-	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.politics">POLITICS</h2>
-		<div ng-repeat="p in politics|limitTo:5">
-			<a target="_blank" href="{{p.url}}">{{p.title}}</a>
-			<p>{{p.byline}}</p>
-			<p>{{p.abstract}}..</p>
-			<hr>
-		</div>
-	</div>
-</div>
-
-<div class="jumbotron section-4">
-	<div id="nav-contain">	
-		<h2 class="on-point" ui-sref="home.news.business">BUSINESS</h2>
-		<div ng-repeat="b in business|limitTo:5">
-			<a target="_blank" href="{{b.url}}">{{b.title}}</a>
-			<p>{{b.byline}}</p>
-			<p>{{b.abstract}}..</p>
-			<hr>
-		</div>
-	</div>
-</div>
-
-<div class="jumbotron section-5">
-	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.technology">TECHNOLOGY</h2>
-		<div ng-repeat="t in technology|limitTo:5">
-			<a target="_blank" href="{{t.url}}">{{t.title}}</a>
-			<p>{{t.byline}}</p>
-			<p>{{t.abstract}}..</p>
-			<hr>
-		</div>
-	</div>
-</div>
-
-<div class="jumbotron section-6">
-	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.opinion">OPINION</h2>
-		<div ng-repeat="o in opinion|limitTo:5">
-			<a target="_blank" href="{{o.url}}">{{o.title}}</a>
-			<p>{{o.byline}}</p>
-			<p>{{o.abstract}}..</p>
-			<hr>
-		</div>
-	</div>
-</div>
-
-<div class="jumbotron section-1">
-	<div id="nav-contain">		
-		<h2 class="on-point" ui-sref="home.news.health">HEALTH</h2>
-		<div ng-repeat="h in health|limitTo:5">
-			<a target="_blank" href="{{h.url}}">{{h.title}}</a>
-			<p>{{h.byline}}</p>
-			<p>{{h.abstract}}..</p>
-			<hr>
-		</div>
-	</div>
-</div>
-	
 <div class="jumbotron section-2">
 	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.arts">ARTS</h2>
-		<div ng-repeat="a in arts|limitTo:5">
-			<a target="_blank" href="{{a.url}}">{{a.title}}</a>
-			<p>{{a.byline}}</p>
-			<p>{{a.abstract}}..</p>
-			<hr>
+		<div class="row">
+			<div class="col-sm-4">
+				<h2 class="on-point" ui-sref="home.news.world">WORLD</h2>
+				<div class="well news-well" ng-repeat="w in world|limitTo:7">
+					<a target="_blank" href="{{w.url}}"><h2>{{w.title}}</h2></a>
+					<h5>{{w.byline}}</h5>
+					<div ng-if="w.multimedia[4].url"><img style="width:100%" src="{{w.multimedia[4].url}}"></div>
+					<h6 ng-if="w.multimedia[4].caption" class="task-date">{{w.multimedia[4].caption}} | &copy {{w.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{w.abstract}}..</h4>
+				</div>
+				<br>
+				<h2 class="on-point" ui-sref="home.news.business">BUSINESS</h2>
+				<div class="well news-well" ng-repeat="b in business|limitTo:7">
+					<a target="_blank" href="{{b.url}}"><h2>{{b.title}}</h2></a>
+					<h5>{{b.byline}}</h5>
+					<div ng-if="b.multimedia[4].url"><img style="width:100%" src="{{b.multimedia[4].url}}"></div>
+					<h6 ng-if="b.multimedia[4].caption" class="task-date">{{b.multimedia[4].caption}} | &copy {{b.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{b.abstract}}..</h4>
+				</div>
+				<br>
+				<h2 class="on-point" ui-sref="home.news.health">HEALTH</h2>
+				<div class="well news-well" ng-repeat="h in health|limitTo:6">
+					<a target="_blank" href="{{h.url}}"><h2>{{h.title}}</h2></a>
+					<h5>{{h.byline}}</h5>
+					<div ng-if="h.multimedia[4].url"><img style="width:100%" src="{{h.multimedia[4].url}}"></div>
+					<h6 ng-if="h.multimedia[4].caption" class="task-date">{{h.multimedia[4].caption}} | &copy {{h.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{h.abstract}}..</h4>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<h2 class="on-point" ui-sref="home.news.national">NATIONAL</h2>
+				<div class="well news-well" ng-repeat="n in national|limitTo:7">
+					<a target="_blank" href="{{n.url}}"><h2>{{n.title}}</h2></a>
+					<h5>{{n.byline}}</h5>
+					<div ng-if="n.multimedia[4].url"><img style="width:100%" src="{{n.multimedia[4].url}}"></div>
+					<h6 ng-if="n.multimedia[4].caption" class="task-date">{{n.multimedia[4].caption}} | &copy {{n.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{n.abstract}}..</h4>
+				</div>
+				<br>
+				<h2 class="on-point" ui-sref="home.news.technology">TECHNOLOGY</h2>
+				<div class="well news-well" ng-repeat="t in technology|limitTo:7">
+					<a target="_blank" href="{{t.url}}"><h2>{{t.title}}</h2></a>
+					<h5>{{t.byline}}</h5>
+					<div ng-if="t.multimedia[4].url"><img style="width:100%" src="{{t.multimedia[4].url}}"></div>
+					<h6 ng-if="t.multimedia[4].caption" class="task-date">{{t.multimedia[4].caption}} | &copy {{t.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{t.abstract}}..</h4>
+				</div>
+				<br>
+				<h2 class="on-point" ui-sref="home.news.arts">ARTS</h2>
+				<div class="well news-well" ng-repeat="a in arts|limitTo:6">
+					<a target="_blank" href="{{a.url}}"><h2>{{a.title}}</h2></a>
+					<h5>{{a.byline}}</h5>
+					<div ng-if="a.multimedia[4].url"><img style="width:100%" src="{{a.multimedia[4].url}}"></div>
+					<h6 ng-if="a.multimedia[4].caption" class="task-date">{{a.multimedia[4].caption}} | &copy {{a.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{a.abstract}}..</h4>
+				</div>
+			</div>
+			
+			<div class="col-sm-4">
+				<h2 class="on-point" ui-sref="home.news.politics">POLITICS</h2>
+				<div class="well news-well" ng-repeat="p in politics|limitTo:5">
+					<a target="_blank" href="{{p.url}}"><h2>{{p.title}}</h2></a>
+					<h5>{{p.byline}}</h5>
+					<<div ng-if="p.multimedia[4].url"><img style="width:100%" src="{{p.multimedia[4].url}}"></div>
+					<h6 ng-if="p.multimedia[4].caption" class="task-date">{{p.multimedia[4].caption}} | &copy {{p.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{p.abstract}}..</h4>
+				</div>
+				<br>
+				<h2 class="on-point" ui-sref="home.news.opinion">OPINION</h2>
+				<div class="well news-well" ng-repeat="o in opinion|limitTo:5">
+					<a target="_blank" href="{{o.url}}"><h2>{{o.title}}</h2></a>
+					<h5>{{o.byline}}</h5>
+					<div ng-if="o.multimedia[4].url"><img style="width:100%" src="{{o.multimedia[4].url}}"></div>
+					<h6 ng-if="o.multimedia[4].caption" class="task-date">{{o.multimedia[4].caption}} | &copy {{o.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{o.abstract}}..</h4>
+				</div>
+				<br>
+				<h2 class="on-point" ui-sref="home.news.fashion">FASHION</h2>
+				<div class="well news-well" ng-repeat="f in fashion|limitTo:5">
+					<a target="_blank" href="{{f.url}}"><h2>{{f.title}}</h2></a>
+					<h5>{{f.byline}}</h5>
+					<div ng-if="f.multimedia[4].url"><img style="width:100%" src="{{f.multimedia[4].url}}"></div>
+					<h6 ng-if="f.multimedia[4].caption" class="task-date">{{f.multimedia[4].caption}} | &copy {{f.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{f.abstract}}..</h4>
+				</div>
+				<br>
+				<h2 class="on-point" ui-sref="home.news.travel">TRAVEL</h2>
+				<div class="well news-well" ng-repeat="t in travel|limitTo:5">
+					<a target="_blank" href="{{t.url}}"><h2>{{t.title}}</h2></a>
+					<h5>{{t.byline}}</h5>
+					<div ng-if="t.multimedia[4].url"><img style="width:100%" src="{{t.multimedia[4].url}}"></div>
+					<h6 ng-if="t.multimedia[4].caption" class="task-date">{{t.multimedia[4].caption}} | &copy {{t.multimedia[4].copyright}}</h6>
+					<h4 class="abstract">{{t.abstract}}..</h4>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-
-<div class="jumbotron section-3">
-	<div id="nav-contain">			
-		<h2 class="on-point" ui-sref="home.news.fashion">FASHION</h2>
-		<div ng-repeat="f in fashion|limitTo:5">
-			<a target="_blank" href="{{f.url}}">{{f.title}}</a>
-			<p>{{f.byline}}</p>
-			<p>{{f.abstract}}..</p>
-			<hr>
-		</div>
-	</div>
-</div>
-
-<div class="jumbotron section-4">
-	<div id="nav-contain">
-		<h2 class="on-point" ui-sref="home.news.travel">TRAVEL</h2>
-		<div ng-repeat="t in travel|limitTo:5">
-			<a target="_blank" href="{{t.url}}">{{t.title}}</a>
-			<p>{{t.byline}}</p>
-			<p>{{t.abstract}}..</p>
-			<hr>
-		</div>
-	</div>
-</div>
-
 
 
 

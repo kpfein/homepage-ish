@@ -1,4 +1,4 @@
-angular.module("homepage").controller("homeCtrl", function($scope, $stateParams, newsService, sportsService, weatherService, todoService, socialService, World, National, Politics, Business, Technology, Opinion, Health, Arts, Fashion, Travel, Sports, Weather, currentUser){
+angular.module("homepage").controller("homeCtrl", function($scope, $stateParams, $sce, newsService, sportsService, weatherService, todoService, socialService, World, National, Politics, Business, Technology, Opinion, Health, Arts, Fashion, Travel, Sports, Weather, currentUser){
 
 	var s = $scope;
 	s.world = World;
@@ -14,7 +14,9 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 	s.sports = Sports;
 	s.w = Weather;
 	s.currentUser = currentUser;
-	console.log(s.w)
+	console.log(s.sports)
+	s.Math = Math;
+
 
 /////// TWITTER ///////////////////////////////////////////////////////////
 	s.postTweet = function(tweet, currentUser){
@@ -27,11 +29,52 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 	s.getTimeline = function(currentUser){
 		socialService.getTimeline(s.currentUser).then(function(results){
 			s.timeline = results;
-			console.log(s.timeline);
+			// console.log(s.timeline);
 		})	
 	}
 	s.getTimeline(s.currentUser)
 
+	s.twitterlinks = function (text){
+	    var base_url = 'http://twitter.com/';   // identica: 'http://identi.ca/'
+	    var hashtag_part = 'search?q=#';        // identica: 'tag/'
+	    // convert URLs into links
+	    text = text.replace(
+	        /(>|<a[^<>]+href=['"])?(https?:\/\/([-a-z0-9]+\.)+[a-z]{2,5}(\/[-a-z0-9!#()\/?&.,]*[^ !#?().,])?)/gi,
+	        function($0, $1, $2) {
+	            return ($1 ? $0 : '<a href="' + $2 + '" target="_blank">' + $2 + '</a>');
+	        });
+	    // convert protocol-less URLs into links        
+	    text = text.replace(
+	        /(:\/\/|>)?\b(([-a-z0-9]+\.)+[a-z]{2,5}(\/[-a-z0-9!#()\/?&.]*[^ !#?().,])?)/gi,
+	        function($0, $1, $2) {
+	            return ($1 ? $0 : '<a href="http://' + $2 + '">' + $2 + '</a>');
+	        });
+	    // convert @mentions into follow links
+	    text = text.replace(
+	        /(:\/\/|>)?(@([_a-z0-9\-]+))/gi,
+	        function($0, $1, $2, $3) {
+	            return ($1 ? $0 : '<a href="' + base_url + $3
+	                + '" title="Follow ' + $3 + '" target="_blank">@' + $3
+	                + '</a>');
+	        });
+	    // convert #hashtags into tag search links
+	    text = text.replace(
+	        /(:\/\/[^ <]*|>)?(\#([_a-z0-9\-]+))/gi,
+	        function($0, $1, $2, $3) {
+	            return ($1 ? $0 : '<a href="' + base_url + hashtag_part + $3
+	                + '" title="Search tag: ' + $3 + '" target="_blank">#' + $3
+	                + '</a>');
+	        });
+	    return text;
+	}
+
+	s.renderHtml = function (htmlCode) {
+        return $sce.trustAsHtml(htmlCode);
+    };
+
+    s.parseTwitterDate = function (text) {
+		return new Date(Date.parse(text.replace(/( +)/, ' UTC$1')));
+	}
 
 
 
@@ -98,7 +141,7 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 	s.getActiveTasks = function(currentUser){
 		todoService.getActiveTasks(s.currentUser).then(function(results){
 			s.actives = results;
-			// console.log(s.actives);
+			console.log(s.actives[0].due);
 		});
 
 	};
@@ -117,5 +160,20 @@ angular.module("homepage").controller("homeCtrl", function($scope, $stateParams,
 			console.log("progress updated");
 		});
 	};
+
+	s.checkDue = function(dueDate){
+		var current = new Date().getTime();
+		var due = new Date(dueDate).getTime();
+		var check = due - current;
+		return check;
+		// if(due - current <= 86400000 && due - current >= 0) {
+		// 	console.log("task due tomorrow")
+		// 	return true
+		// } else if (due - current < 0){
+		// 	console.log("task past due")
+		// 	return false
+		// }
+
+	}
 
 });

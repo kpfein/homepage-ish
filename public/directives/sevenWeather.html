@@ -1,0 +1,16 @@
+<div class="well twit-well" ng-repeat="w in w.daily.data">
+	<div class="row">
+		<div class="col-md-4">
+			<h3 id="daily-day">{{convertDate(w.time) | date: "EEEE"}}</h3>
+		</div>
+		<div class="col-md-offset-1 col-md-3 daily-icon-contain">
+			<div id="daily-icon"><skycon icon="w.icon"></skycon></div>
+		</div>
+		<div class="col-md-offset-1 col-md-3">
+			<h5>Hi: {{round(w.temperatureMax)}}°F / {{celsius(w.temperatureMax)}}°C</h5>
+			<h5>Lo: {{round(w.temperatureMin)}}°F / {{celsius(w.temperatureMin)}}°C</h5>
+			<h5>Precipitation: {{percentage(w.precipProbability)}}%</h5>
+			<h5>Wind: {{direction(w.windBearing)}} @ {{round(w.windSpeed)}} mph</h5>			
+		</div>
+	</div>
+</div>

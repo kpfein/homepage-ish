@@ -4,28 +4,30 @@
 	</div>
 </div>
 
-<div class="jumbotron section-2">
-	<div id="nav-contain">
-		<form class="form-horizontal">
-			<div class="form-group">
-				<label for="task-title" class="col-md-1 control-label">Title</label>
-				<div class="col-md-5">
-					<input id="task-title" class="form-control" ng-model="newTask.title" placeholder="title">
+<div class="mainer-contain">
+	<div class="jumbotron section-2">
+		<div id="nav-contain">
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label for="task-title" class="col-md-1 control-label">Title</label>
+					<div class="col-md-5">
+						<input id="task-title" class="form-control" ng-model="newTask.title" placeholder="title">
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="task-details" class="col-md-1 control-label">Details</label>
-				<div class="col-md-5">
-					<input id="task-details" class="form-control" ng-model="newTask.details" placeholder="details">
+				<div class="form-group">
+					<label for="task-details" class="col-md-1 control-label">Details</label>
+					<div class="col-md-5">
+						<input id="task-details" class="form-control" ng-model="newTask.details" placeholder="details">
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="task-due" class="col-md-1 control-label">Due Day</label>
-				<div class="col-md-5">
-					<datepicker date-format="MM/dd/yyyy"><input id="task-due" class="form-control" ng-model="date" placeholder="Choose a date"></datepicker>
+				<div class="form-group">
+					<label for="task-due" class="col-md-1 control-label">Due Day</label>
+					<div class="col-md-5">
+						<datepicker date-format="MM/dd/yyyy"><input id="task-due" class="form-control" ng-model="date" placeholder="Choose a date"></datepicker>
+					</div>
 				</div>
-			</div>
-			<button class="col-md-1 news-buttonz" type="submit" ng-click="addTask(newTask, date, currentUser)">Submit</button>
-		</form>
+				<button class="col-md-1 news-buttonz" type="submit" ng-click="addTask(newTask, date, currentUser)">Submit</button>
+			</form>
+		</div>
 	</div>
 </div>

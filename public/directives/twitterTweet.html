@@ -1,0 +1,14 @@
+<div class="well" id="tweet-compose-well">
+	<div id="tweet-content">
+		<textarea class="tweet-compose form-control" ng-model="tweet.status" placeholder="Compose new Tweet..." maxlength="200"/></textarea>
+		<div id="tweet-controls">
+			<button 
+				class="btn btn-sm btn-twit" 
+				id="tweet-submit" 
+				ng-disabled="tweet.status.length >= 141 || tweet.status.length === 0" 
+				ng-click="postTweet(tweet)">
+				Tweet</button>
+			<h4 id="char-count" ng-class="{'warning': tweet.status.length >= 130}">{{140 - tweet.status.length}}</h4>
+		</div>
+	</div>
+</div>

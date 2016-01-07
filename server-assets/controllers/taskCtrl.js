@@ -14,7 +14,7 @@ module.exports = {
 	},
 
 	getCompletedTasks: function(req, res){
-		Task.find({user: req.params.userID}).find({status: "completed"}).sort({updateAt: 1}).then(function(results){
+		Task.find({user: req.params.userID}).find({status: "completed"}).sort({updateAt: -1}).then(function(results){
 			res.status(200).send(results);
 		});
 	},

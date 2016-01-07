@@ -1,11 +1,35 @@
+<div class="jumbotron section-1">
+	<div id="nav-contain">
+		<h2>NATIONAL</h2>
+	</div>
+</div>
 <div class="jumbotron section-2">
-	<div id="nav-contain">	
-		<h2 class="on-point" ui-sref="home.news.national">NATIONAL</h2>
-		<div ng-repeat="n in national">
-			<a target="_blank" href="{{n.url}}">{{n.title}}</a> 
-			<p>{{n.byline}}</p>
-			<p>{{n.abstract}}..</p>
-			<hr>
+	<div id="nav-contain">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="n in national|limitTo:Math.ceil(national.length/3)">
+					<a target="_blank" href="{{n.url}}"><h2>{{n.title}}</h2></a>
+					<h5>{{n.byline}}</h5>
+					<div><img style="width:100%" src="{{n.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{n.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="n in national|limitTo:Math.ceil(national.length/3):Math.ceil(national.length/3)" >
+					<a target="_blank" href="{{n.url}}"><h2>{{n.title}}</h2></a>
+					<h5>{{n.byline}}</h5>
+					<div><img style="width:100%" src="{{n.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{n.abstract}}..</h4>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="well news-well" ng-repeat="n in national|limitTo:Math.ceil(national.length/3):Math.ceil(national.length/3)*2">
+					<a target="_blank" href="{{n.url}}"><h2>{{n.title}}</h2></a>
+					<h5>{{n.byline}}</h5>
+					<div><img style="width:100%" src="{{n.multimedia[4].url}}"></div>
+					<h4 class="abstract">{{n.abstract}}..</h4>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,19 @@
+<div class="well">
+	<div class="row">
+		<div class="col-md-4">
+			<div id="current-icon"><skycon icon="w.currently.icon"></skycon></div>
+			<h3 id="current-sum">{{w.currently.summary}}</h3>
+		</div>
+		<div class="col-md-offset-1 col-md-3">
+			<h3 id="current-temp">{{round(w.currently.temperature)}}°F</h3>
+			<h3 id="current-temp">{{celsius(w.currently.temperature)}}°C</h3>
+		</div>
+		<div class="col-md-offset-1 col-md-3">
+			<h5>Feels Like: {{round(w.currently.apparentTemperature)}}°F / {{celsius(w.currently.apparentTemperature)}}°C</h5>
+			<h5>Hi: {{round(w.daily.data[0].temperatureMax)}}°F / {{celsius(w.daily.data[0].temperatureMax)}}°C</h5>
+			<h5>Lo: {{round(w.daily.data[0].temperatureMin)}}°F / {{celsius(w.daily.data[0].temperatureMin)}}°C</h5>
+			<h5>Precipitation: {{percentage(w.currently.precipProbability)}}%</h5>
+			<h5>Wind: {{direction(w.currently.windBearing)}} @ {{round(w.currently.windSpeed)}} mph</h5>
+		</div>
+	</div>
+</div>
